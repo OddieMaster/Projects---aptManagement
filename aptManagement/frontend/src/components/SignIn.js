@@ -7,7 +7,8 @@ import Avatar from '@material-ui/core/Avatar';
 import { blue } from '@material-ui/core/colors';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-
+import Footer from "./pageComponents/Footer";
+import GlobalHeader from './pageComponents/GlobalHeader';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -53,68 +54,61 @@ const SignIn = () => {
     const classes = useStyles();
     return (
          < >
+              <GlobalHeader  />
 
-                <Button 
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    href="/home"
-                    className={classes.homeButton}
-                >home</Button>
+                <Container component="main" maxWidth="xs">
+                    <CssBaseline>
 
-            <Container component="main" maxWidth="xs">
-                <CssBaseline>
+                            <div className={classes.paper}>
+                                <Avatar className={classes.avatar}></Avatar>
+                                    <Typography component="h1" variant="h5">
+                                    Login
+                                    </Typography>
+                                    <form className={classes.form} noValidate>  
+                                        <TextField
+                                            variant="outlined"
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            id="email"
+                                            label="E-mail Address"
+                                            name="email"
+                                            autoComplete="email"
+                                            autoFocus
+                                        />
+                                        <TextField
+                                            variant="outlined"
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            id="password"
+                                            label="Password"
+                                            name="password"
+                                            type="password"
+                                            autoComplete="current-password"
+                                        />
+                                            <Button
+                                                type="submit"
+                                                variant="contained"
+                                                color="primary"
+                                                className={classes.enterButton}
+                                            >Enter</Button>
 
-                        <div className={classes.paper}>
-                            <Avatar className={classes.avatar}></Avatar>
-                                <Typography component="h1" variant="h5">
-                                Login
-                                </Typography>
-                                <form className={classes.form} noValidate>  
-                                    <TextField
-                                        variant="outlined"
-                                        margin="normal"
-                                        required
-                                        fullWidth
-                                        id="email"
-                                        label="E-mail Address"
-                                        name="email"
-                                        autoComplete="email"
-                                        autoFocus
-                                    />
-                                    <TextField
-                                        variant="outlined"
-                                        margin="normal"
-                                        required
-                                        fullWidth
-                                        id="password"
-                                        label="Password"
-                                        name="password"
-                                        type="password"
-                                        autoComplete="current-password"
-                                        autoFocus
-                                    />
-                                        <Button
-                                            type="submit"
-                                            variant="contained"
-                                            color="primary"
-                                            className={classes.enterButton}
-                                        >Enter</Button>
-
-                                        <Button
-                                            type="submit"
-                                            variant="contained"
-                                            color="primary"
-                                            href="/register"
-                                            className={classes.registerButton}
-                                        >Register</Button>
-                                        
-                                
-                                </form>
-                        </div>
-                    
-                </CssBaseline>
-            </Container>
+                                            <Button
+                                                type="submit"
+                                                variant="contained"
+                                                color="primary"
+                                                href="/register"
+                                                className={classes.registerButton}
+                                            >Register</Button>
+                                            
+                                    
+                                    </form>
+                            </div>
+                        
+                    </CssBaseline>
+                </Container>
+            <Footer title="Apartment Management" description="Kiper v1.0" />
         </>
     );
 };
