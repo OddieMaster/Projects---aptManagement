@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
-    
   },
   toolbarTitle: {
     flex: 1,
@@ -41,12 +40,12 @@ const Header = (props) => {
                         {title}
                     </Typography>
          
-                        <Button variant="outlined" size="small" >
-                            Consultar
+                        <Button variant="outlined" size="small" href="consult" >
+                            Consult
                         </Button>
 
                         <Button variant="outlined" size="small" href="/" >
-                            Entrar
+                            Login
                         </Button>
           
                 </Toolbar>
