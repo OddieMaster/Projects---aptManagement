@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Button from '@material-ui/core/Button';
+import List from './pageComponents/List'
 
 const useStyles = makeStyles((theme) => ({
     input: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Consult = () => {
+    
     const [apartament, setApartament] = useState(0);
     const [bloc, setBloc] = useState(0);
     const classes = useStyles()
@@ -52,7 +54,9 @@ const Consult = () => {
                         <p>Apartamento:{apartament} Bloco:{bloc}</p> 
                     </CssBaseline>
                 </Container>
+                <List />
             <div id="teste"></div>
+            
             
         </>
     );
