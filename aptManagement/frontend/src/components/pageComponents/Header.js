@@ -42,8 +42,8 @@ const Header = (props) => {
          
                         <Button variant="outlined" size="small" href="consult" >
                             Consult
-                        </Button>
-
+                        </Button>{"    "}
+                        
                         <Button variant="outlined" size="small" href="/" >
                             Login
                         </Button>

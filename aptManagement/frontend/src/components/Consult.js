@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const Consult = () => {
+const Consult = (props) => {
     
     const [apartament, setApartament] = useState(0);
     const [bloc, setBloc] = useState(0);
@@ -36,6 +36,7 @@ const Consult = () => {
                         <Input 
                         className={classes.input}
                         onChange={event => setApartament(event.target.value)}
+                        
                         /> 
                         <p>Bloc</p>
 
@@ -51,10 +52,13 @@ const Consult = () => {
                             color="primary"
                             className={classes.button}                            
                         >Consult</Button>
+                        
                         <p>Apartamento:{apartament} Bloco:{bloc}</p> 
                     </CssBaseline>
                 </Container>
-                <List />
+                <List  
+                    data={props.data} 
+                />
             <div id="teste"></div>
             
             
