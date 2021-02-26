@@ -9,6 +9,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import PopupDelete from "./PopupDelete";
+import PopupEdit from "./PopupEdit";
+import AddInfoPage from "./AddInfoPage";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -23,22 +25,17 @@ const useStyles = makeStyles((theme) => ({
 const List = (props) => {
   const classes = useStyles();
 
-  
-
-   console.log(props);
+  console.log(props);
 
   return (
     <>
       <Container>
         <CssBaseline>
-          <Button
-            variant="contained"
-            title="add Info"
-            className={classes.button}
-            href="/AddInfoPage"
-          >
-            Add info
-          </Button>
+          <AddInfoPage
+            data={props.data}
+            addItem={props.addItem}
+            title="Add Info"
+          />
 
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
@@ -60,26 +57,17 @@ const List = (props) => {
                   <TableCell align="right">{row.apartment}</TableCell>
                   <TableCell align="right">{row.bloc}</TableCell>
                   <TableCell align="right">
-                    <Button
-                      variant="contained"
+                    <PopupEdit
                       title="Edit"
-                      color="primary"
-                      href="/EditPage"
-                      onClick={(event) => {
-                        console.log("teste");
-                      }}
-                    >
-                      Edit
-                    </Button>{" "}
-                    <PopupDelete title="Delete" id={row.id}></PopupDelete>
-                    <Button
-                      variant="contained"
-                      title="add Info"
-                      className={classes.button}
-                      onClick={() => props.deleteItem(row.id)}
-                    >
-                      teste
-                    </Button>
+                      row={row}
+                      editItem={props.editItem}
+                    ></PopupEdit>{" "}
+                    {"  "}
+                    <PopupDelete
+                      title="Delete"
+                      id={row.id}
+                      deleteItem={props.deleteItem}
+                    ></PopupDelete>
                   </TableCell>
                 </TableRow>
               ))}

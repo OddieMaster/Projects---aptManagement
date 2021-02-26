@@ -1,97 +1,130 @@
-import React, {useState}  from 'react';
-import Button from '@material-ui/core/Button';
-import { Input } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import GlobalHeader from './GlobalHeader';
-import Footer from './Footer';
+import React, { useState } from "react";
+import Button from "@material-ui/core/Button";
+import { Input } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const useStyles = makeStyles((theme) => ({
-    input: {
-
-        margin: 'auto',
-        display: 'flex',
-    },
-    button: {
-        marginTop: theme.spacing(4),
-    }
+  input: {
+    margin: "auto",
+    display: "flex",
+  },
+  button: {
+    marginTop: theme.spacing(4),
+  },
+  button: {
+    backgroundColor: "#22bb33",
+    color: "white",
+  },
 }));
 
-
 const AddInfoPage = (props) => {
+  const [open, setOpen] = React.useState(false);
 
-    const [apartment, setAparment] = useState([]);
-    const [bloc, setBloc] = useState([]);
-    const [resident, setResident] = useState([]);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-    const classes = useStyles()
+  const handleClose = () => {
+    setOpen(false);
+  };
 
+  const [apartment, setAparment] = useState([]);
+  const [bloc, setBloc] = useState([]);
+  const [resident, setResident] = useState([]);
 
-    function handleChangeApartment (event){
-        let textAp = event.target.value;
-        console.log({textAp})
-        setAparment(textAp)
-    }
+  const classes = useStyles();
 
-    function handleChangeBloc(event){
-        let textBloc = event.target.value;
-        console.log({textBloc})
-        setBloc(textBloc)
-    }
+  function handleChangeApartment(event) {
+    let textAp = event.target.value;
+    console.log({ textAp });
+    setAparment(textAp);
+  }
 
-    function handleChangeResident(event){
-        let textDw = event.target.value;
-        console.log({textDw})
-        setResident(textDw)
-    }
-    
-    console.log(props)
+  function handleChangeBloc(event) {
+    let textBloc = event.target.value;
+    console.log({ textBloc });
+    setBloc(textBloc);
+  }
 
-    return (
-        <>  
-           {/*  <GlobalHeader title="Add Resident, Aparment and Bloc" /> */}
-             <Container component="main" maxWidth="xs">
-                    <CssBaseline>
-                <p>Apartment Number</p>
+  function handleChangeResident(event) {
+    let textDw = event.target.value;
+    console.log({ textDw });
+    setResident(textDw);
+  }
 
-                <Input 
-                    className={classes.input}
-                    autoFocus
-                    id="aparment"
-                    value={apartment}
-                    onChange={handleChangeApartment}
-                /> 
+  function handleClickFinish() {
+    props.addItem(apartment, bloc, resident);
+    console.log(apartment)
+    setOpen(false);
+  }
 
-                <p>Bloc</p>
+  return (
+    <>
+      <Button variant="outlined" color="primary" className={classes.button} onClick={handleClickOpen}>
+        {props.title}
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Register Information</DialogTitle>
+        <DialogContent>
+          <p>Apartment Number</p>
 
-                <Input 
-                    className={classes.input}
-                    id="bloc"
-                    value={bloc}
-                    onChange={handleChangeBloc}
-                />
-                <p> Resident</p>
-                 <Input 
-                    className={classes.input}
-                    id="resident"
-                    value={resident}
-                    onChange={handleChangeResident}
-                />
+          <Input
+            className={classes.input}
+            autoFocus
+            id="aparment"
+            value={apartment}
+            onChange={handleChangeApartment}
+          />
 
-                <Button  
-                    fullWidth              
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}  
-                    onClick={(() => props.addItem(apartment, bloc, resident))}                        
-                >Submit </Button>
-                </CssBaseline>
-                </Container>
-            {/*     <Footer  title="Apartment Management" description="Kiper v1.0"/> */ }
-        </>
-    );
+          <p>Bloc</p>
+
+          <Input
+            className={classes.input}
+            id="bloc"
+            value={bloc}
+            onChange={handleChangeBloc}
+          />
+          <p> Resident</p>
+          <Input
+            className={classes.input}
+            id="resident"
+            value={resident}
+            onChange={handleChangeResident}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button
+            fullWidth
+            type="submit"
+            variant="contained"
+            color="primary"
+            onClick={handleClickFinish}
+          >
+            Submit
+          </Button>
+          <Button
+            fullWidth
+            variant="contained"
+            onClick={handleClose}
+            color="primary"
+          >
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
 };
 
 export default AddInfoPage;

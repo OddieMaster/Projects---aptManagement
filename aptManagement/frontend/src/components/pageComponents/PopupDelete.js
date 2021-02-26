@@ -22,19 +22,9 @@ const PopupEdit = (props) => {
     setOpen(true);
   };
 
-  console.log(props);
-  console.log(props.id);
-
-  function teste() {
-    let id = props.id;
-    console.log("teste");
-    setOpen(false);
-    console.log(id);
-    props.deleteItems(id);
-  }
-
   return (
     <>
+      
       <Button variant="contained" color="secondary" onClick={handleOpen}>
         {props.title}
       </Button>
@@ -58,7 +48,7 @@ const PopupEdit = (props) => {
           <Button autoFocus onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => teste()} color="primary" autoFocus>
+          <Button onClick={() => props.deleteItem(props.id)} color="primary" autoFocus>
             Delete
           </Button>
         </DialogActions>

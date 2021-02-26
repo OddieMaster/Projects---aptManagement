@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, {useState}  from "react";
 import GlobalHeader from "./pageComponents/GlobalHeader";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import List from "./pageComponents/List";
 import Button from "@material-ui/core/Button";
-import { Input } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import Footer from "./pageComponents/Footer";
-import AddInfoPage from "./pageComponents/AddInfoPage";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -18,23 +17,49 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
 }));
+ 
+
 
 const Consult = (props) => {
+
+	const [resident, setResident] = useState([]);
+	const [bloc, setBloc] = useState([]);
+	const [apartment, setApartment] = useState([]);
+
+	function searchItem(rows) {
+		return rows.filter((row) => row.resident.toLowerCase().indexOf(resident) > -1   );
+	  }
+
   const classes = useStyles();
-  console.log(props);
+  console.log(resident);
   return (
     <>
       <GlobalHeader title="Consult apartment" />
       <Container component="main" maxWidth="xs">
         <CssBaseline>
-          <AddInfoPage data={props.data} addItem={props.addItem} />
-          {/*   <p>Apartment Number</p>
+           <p>Apartment Number</p>
 
-          <Input className={classes.input} autoFocus />
+		   <TextField
+            className={classes.input}
+            value={apartment}
+            onChange={(e) => setApartment(e.target.value)}
+          />
 
           <p>Bloc</p>
 
-          <Input className={classes.input} />
+          <TextField
+            className={classes.input}
+            value={bloc}
+            onChange={(e) => setBloc(e.target.value)}
+          /> 
+
+          <p>Resident</p>
+
+          <TextField
+            className={classes.input}
+            value={resident}
+            onChange={(e) => setResident(e.target.value)}
+          />
 
           <Button
             fullWidth
@@ -46,10 +71,16 @@ const Consult = (props) => {
             {" "}
             Consult
             {props.title}{" "}
-          </Button> */}
+          </Button>
         </CssBaseline>
       </Container>
-      <List data={props.data} deleteItem={props.deleteItem} />
+      <List
+        data={searchItem(props.data)}
+		addItem={props.addItem}
+        deleteItem={props.deleteItem}
+        editItem={props.editItem}
+		
+      />
       <Footer title="Apartment Management" description="Kiper v1.0" />
     </>
   );
