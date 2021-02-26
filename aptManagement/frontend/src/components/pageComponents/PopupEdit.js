@@ -27,19 +27,16 @@ const PopupEdit = (props) => {
   
   function handleChangeApartment (event){
       let textAp = event.target.value;
-      console.log({textAp})
       setAparment(textAp)
   }
 
   function handleChangeBloc(event){
       let textBloc = event.target.value;
-      console.log({textBloc})
       setBloc(textBloc)
   }
 
   function handleChangeResident(event){
       let textDw = event.target.value;
-      console.log({textDw})
       setResident(textDw)
   }
   

@@ -22,16 +22,51 @@ const useStyles = makeStyles((theme) => ({
 
 const Consult = (props) => {
 
-	const [resident, setResident] = useState([]);
-	const [bloc, setBloc] = useState([]);
-	const [apartment, setApartment] = useState([]);
+	const [resident, setResident] = useState("");
+	const [bloc, setBloc] = useState("");
+	const [apartment, setApartment] = useState("");
 
-	function searchItem(rows) {
-		return rows.filter((row) => row.resident.toLowerCase().indexOf(resident) > -1   );
-	  }
+  
 
+ 	function searchItem(rows) {
+
+    if (resident === "" && bloc === "" && apartment === ""){
+      console.log("entrou todos")
+    return rows
+     
+    } else if (resident !== "" && bloc === "" && apartment === ""){
+      console.log("entrou resident")
+    return rows.filter(row => row.resident.toLowerCase().indexOf(resident.toLowerCase()) > -1)
+
+    } else if (bloc !== "" && resident === "" && apartment === ""){
+      console.log("entrou bloc")
+    return rows.filter(row => row.bloc === bloc)
+
+    } else if (apartment !== "" && bloc === "" && resident === ""){
+      console.log("entrou apartment")
+    return rows.filter(row => row.apartment === apartment )
+
+    } else if (bloc !== "" && apartment !== "" && resident === "" ){
+      console.log("entrou bloc e aparment")
+      return rows.filter(row=> row.apartment === apartment && row.bloc === bloc)
+
+    } else if (bloc !== "" && apartment === "" && resident !== "" ){
+      console.log ("entrou bloc e resident")
+      return rows.filter(row=> row.resident.toLowerCase().indexOf(resident.toLowerCase()) > -1 && row.bloc === bloc  )
+
+    } else if (bloc === "" && apartment !== "" && resident !== "" ){
+      console.log ("entrou apartment e resident")
+      return rows.filter(row=> row.resident.toLowerCase().indexOf(resident.toLowerCase()) > -1 && row.apartment === apartment  )
+
+    } else if (bloc !== "" && apartment !== "" && resident !== "" ){
+      console.log ("entrou apartment, bloc e resident")
+      return rows.filter(row=> row.resident.toLowerCase().indexOf(resident.toLowerCase()) > -1 && row.apartment === apartment &&  row.bloc === bloc)
+    }  
+  return rows
+}
+    
   const classes = useStyles();
-  console.log(resident);
+
   return (
     <>
       <GlobalHeader title="Consult apartment" />
@@ -71,12 +106,12 @@ const Consult = (props) => {
             {" "}
             Consult
             {props.title}{" "}
-          </Button>
+          </Button>           
         </CssBaseline>
       </Container>
       <List
         data={searchItem(props.data)}
-		addItem={props.addItem}
+		    addItem={props.addItem}
         deleteItem={props.deleteItem}
         editItem={props.editItem}
 		

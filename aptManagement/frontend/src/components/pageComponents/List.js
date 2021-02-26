@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,6 +10,8 @@ import TableRow from "@material-ui/core/TableRow";
 import PopupDelete from "./PopupDelete";
 import PopupEdit from "./PopupEdit";
 import AddInfoPage from "./AddInfoPage";
+
+
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -25,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
 const List = (props) => {
   const classes = useStyles();
 
-  console.log(props);
-
   return (
     <>
       <Container>
@@ -36,7 +35,6 @@ const List = (props) => {
             addItem={props.addItem}
             title="Add Info"
           />
-
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
@@ -48,8 +46,8 @@ const List = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {props.data.map((row) => (
-                <TableRow key={row.id}>
+              	{props.data.map((row) => (
+                 <TableRow key={row.id}>
                   <TableCell component="th" scope="row">
                     {row.id}
                   </TableCell>
@@ -75,6 +73,7 @@ const List = (props) => {
           </Table>
         </CssBaseline>
       </Container>
+
     </>
   );
 };

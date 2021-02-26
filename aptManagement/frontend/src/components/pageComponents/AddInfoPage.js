@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { Input } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -17,10 +14,8 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(4),
-  },
-  button: {
     backgroundColor: "#22bb33",
-    color: "white",
+    color: "white"
   },
 }));
 
