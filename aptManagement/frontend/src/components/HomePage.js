@@ -18,7 +18,7 @@ const HomePage = () => {
     const classes = useStyles()
     return (
         <>
-        <Header title="Welcome [User]" />
+        <Header title="Welcome, Guilherme" />
 
             <img src={condominio} alt="condominio" className={classes.img} ></img>   
 

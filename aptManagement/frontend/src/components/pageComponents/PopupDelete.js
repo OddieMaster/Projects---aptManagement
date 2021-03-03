@@ -7,6 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 
 const PopupEdit = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -25,7 +26,7 @@ const PopupEdit = (props) => {
   return (
     <>
       
-      <Button variant="contained" color="secondary" onClick={handleOpen}>
+      <Button variant="contained" color="secondary" startIcon={<DeleteOutlinedIcon />} onClick={handleOpen}>
         {props.title}
       </Button>
       <Dialog

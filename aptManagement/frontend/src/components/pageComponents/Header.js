@@ -3,23 +3,24 @@ import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import SearchIcon from '@material-ui/icons/Search';
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
+    background: "  linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(29,116,253,1) 0%, rgba(255,253,251,1) 60%)",
+    
   },
   toolbarTitle: {
     flex: 1,
-    marginLeft: theme.spacing(19)
+    marginLeft: theme.spacing(50)
   },
-  toolbarSecondary: {
-    justifyContent: 'space-between',
-    overflowX: 'auto',
-  },
-  toolbarLink: {
-    padding: theme.spacing(1),
-    flexShrink: 0,
+
+  button: {
+    marginRight: theme.spacing(1),
   },
 }));
 
@@ -39,12 +40,14 @@ const Header = (props) => {
                     >
                         {title}
                     </Typography>
-         
-                        <Button variant="outlined" size="small" href="consult" >
+
+                        <Button className={classes.button} variant="outlined" size="small" href="registerResident" startIcon={<AddCircleOutlineIcon  style={{ color: green[500] }} />}>
+                            Register Resident
+                        </Button>          
+                        <Button className={classes.button} variant="outlined"  size="small" href="consult" startIcon={<SearchIcon color="primary" />} >
                             Consult
-                        </Button>{"    "}
-                        
-                        <Button variant="outlined" size="small" href="/" >
+                        </Button>                        
+                        <Button variant="outlined" size="small"  startIcon={<AccountCircleIcon  color="primary"/>} href="/" >
                             Login
                         </Button>
           

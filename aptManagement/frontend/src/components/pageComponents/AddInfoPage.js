@@ -6,6 +6,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -62,7 +63,7 @@ const AddInfoPage = (props) => {
 
   return (
     <>
-      <Button variant="outlined" color="primary" className={classes.button} onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" className={classes.button} startIcon={<AddCircleIcon />} onClick={handleClickOpen}>
         {props.title}
       </Button>
       <Dialog

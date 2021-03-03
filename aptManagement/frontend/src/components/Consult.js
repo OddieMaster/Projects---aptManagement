@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginTop: theme.spacing(4),
-  },
+  }, 
 }));
  
 
@@ -68,9 +68,9 @@ const Consult = (props) => {
   const classes = useStyles();
 
   return (
-    <>
-      <GlobalHeader title="Consult apartment" />
-      <Container component="main" maxWidth="xs">
+    <>      
+    <GlobalHeader buttonLabel ="Consult Resident Information" title="Consult apartment"  />    
+      <Container component="main" maxWidth="xs">      
         <CssBaseline>
            <p>Apartment Number</p>
 
@@ -94,19 +94,7 @@ const Consult = (props) => {
             className={classes.input}
             value={resident}
             onChange={(e) => setResident(e.target.value)}
-          />
-
-          <Button
-            fullWidth
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.button}
-          >
-            {" "}
-            Consult
-            {props.title}{" "}
-          </Button>           
+          />                  
         </CssBaseline>
       </Container>
       <List

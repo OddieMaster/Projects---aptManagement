@@ -4,22 +4,21 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "./components/Register";
 import HomePage from "./components/HomePage";
 import Consult from "./components/Consult";
-import AddInfoPage from "./components/pageComponents/AddInfoPage";
-
+import RegisterResident from "./components/RegisterResident"
+import ConsultResident from "./components/ConsultResident"
 
 
 function App() {
 
   const [data, setData] = useState([
-    { id: 0, apartment: "1", bloc: "1", resident: "Oddie" },
-    { id: 1, apartment: "2", bloc: "2", resident: "Craft" },
+    { id: 0, apartment: "1", bloc: "1", resident: "Oddie", dtNascimento: "03/04/1995", tel: 994962286, cpf: "07789808630", email: "romualdo.gui@gmail.com"},
+     { id: 1, apartment: "2", bloc: "2", resident: "Craft" },
     { id: 2, apartment: "3", bloc: "3", resident: "Aleatorio1" },
     { id: 3, apartment: "4", bloc: "4", resident: "Aleatorio2" },
-    { id: 4, apartment: "5", bloc: "5", resident: "Aleatorio3" },
-    { id: 5, apartment: "6", bloc: "6", resident: "Aleatorio4" },
-    { id: 6, apartment: "6", bloc: "6", resident: "Aleatorio5" },
-    { id: 7, apartment: "6", bloc: "6", resident: "Aleatorio6" },
-  ]);
+   ]);
+
+  console.log(data)
+
 
   function getRecord(id) {
     const product = data.find((item) => item.id === id);
@@ -55,6 +54,23 @@ function App() {
     console.log("Adicionou!");
   }
 
+  function addResident(resident, dtNascimento, tel, cpf, email, apartment, bloc){
+
+    setData([
+      ...data,
+      {
+        id: data.length + 1,
+        resident: resident,
+        dtNascimento: dtNascimento,
+        tel: tel,
+        cpf: cpf,
+        email: email,
+        apartment: apartment,
+        bloc: bloc,
+      }
+    ])
+  }
+
   return (
     <>
       <Router>
@@ -62,18 +78,26 @@ function App() {
           <Route path="/" exact component={SignIn} />
           <Route path="/register" exact component={Register} />
           <Route path="/homePage" component={HomePage} />
+          <Route path="/consultResident"> 
+            <ConsultResident 
+              data={data} 
+              /> 
+          </Route>
+          
+          <Route path="/registerResident">
+            <RegisterResident 
+              data={data} 
+              addResident={addResident}  
+            /> 
+          </Route>
 
-          <Route path="/consult">
-            
+          <Route path="/consult">            
             <Consult
               data={data}
               addItem={addItem}
               deleteItem={deleteItem}
               editItem={editItem}
             />
-          </Route>
-          <Route path="/AddInfoPage">
-            <AddInfoPage data={data} addItem={addItem} />
           </Route>
         </Switch>
       </Router> 

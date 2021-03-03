@@ -54,7 +54,7 @@ const SignIn = () => {
     const classes = useStyles();
     return (
          < >
-              <GlobalHeader  />
+              <GlobalHeader  title="Sigin"/>
 
                 <Container component="main" maxWidth="xs">
                     <CssBaseline>
