@@ -1,259 +1,208 @@
-import React, { useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { blue } from '@material-ui/core/colors';
+import React from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 import Footer from "./pageComponents/Footer";
-import GlobalHeader from './pageComponents/GlobalHeader';
+import GlobalHeader from "./pageComponents/GlobalHeader";
 import { useForm } from "react-hook-form";
 
-
-
 const useStyles = makeStyles((theme) => ({
-    paper: {
-      marginTop: theme.spacing(8),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: blue[500],
-    },
-    form: {
-      width: '100%', 
-      marginTop: theme.spacing(3),
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2),
-    },
-    homeButton: {
-        background: 'linear-gradient(45deg, #2121d6 30%, #00d4ff 90%)',
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
-        height: 40,
-        padding: '0 30px',
-        margin: theme.spacing(),
-        textTransform:'capitalize',
-  
-      },
-  }));
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: "#6CB26C",
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    backgroundColor: "#6CB26C",
+    margin: theme.spacing(3, 0, 2),
+    color: "#ffffff",
+    fontWeight: "bold",
+  },
+  error: {
+    color: "red",
+  },
+}));
 
 const RegisterResident = (props) => {
+  const { handleSubmit, register, errors } = useForm({});
 
-    const [apartment, setAparment] = useState([]);
-    const [bloc, setBloc] = useState([]);
-    const [resident, setResident] = useState([]);
-    const [dtNascimento, setdtNascimento] =  useState([]);
-    const [email, setEmail] =  useState([]);
-    const [cpf, setCpf] =  useState([]);
-    const [telefone, setTelefone] =  useState([]);
-
-    const { register, handleSubmit, errors } = useForm();
-
-    const onSubmit = data => console.log(data);
-
-    
-    function handleChangeApartment(event) {
-        let textAp = event.target.value;
-        console.log({ textAp });
-        setAparment(textAp);
-      }
-      
-  function handleChangeBloc(event) {
-    let textBloc = event.target.value;
-    console.log({ textBloc });
-    setBloc(textBloc);
-  }
-
-  function handleChangeResident(event) {
-    let textDw = event.target.value;
-    console.log({ textDw });
-    setResident(textDw);
-  }
-
-  function handleChangeDtNascimento(event) {
-    let textDw = event.target.value;
-    console.log({ textDw });
-    setdtNascimento(textDw);
-  }
-
-  function handleChangeEmail(event) {
-    let textDw = event.target.value;
-    console.log({ textDw });
-    setEmail(textDw);
-  }
-
-  function handleChangeCpf(event) {
-    let textDw = event.target.value;
-    console.log({ textDw });
-    setCpf(textDw);
-  }
-
-  function handleChangeTelefone(event) {
-    let textDw = event.target.value;
-    console.log({ textDw });
-    setTelefone(textDw);
-  }
-
-  function handleClickFinish() {
-    props.addResident(resident, dtNascimento, telefone, cpf, email, apartment, bloc);
-    console.log("ativou a função addResident")
-  }
-
-      const classes = useStyles()
-    return (
-        <>
-        <GlobalHeader title="Register Resident"/>
-                <Container component="main" maxWidth="xs">
-                    <CssBaseline />
-                            
-                            <div className={classes.paper}>
-                                <Avatar className={classes.avatar} />
-                                    <Typography component="h1" variant="h5">
-                                    Register Resident Form
-                                    </Typography>
-
-                                    <form className={classes.form} onSubmit={()=> handleSubmit(handleClickFinish)}>
-                                    <Grid container spacing={2}>
-                                        <Grid item xs={12} >
-
-                                            <TextField                                                
-                                                name="name"
-                                                id="name"
-                                                label="Name"
-                                                variant="outlined"
-                                                required
-                                                fullWidth
-                                                autoFocus
-                                                value={resident}
-                                                onChange={handleChangeResident}
-                                                inputRef={register({required: true,  maxLength: 20 })}
-                                            />
-                                             
-                                            </Grid>
-                                            <Grid item xs={12} >
-                                            <TextField
-                                                id="date"
-                                                label="Birthday"
-                                                type="date"
-                                                name="bdate"
-                                                required
-                                                fullWidth
-                                                variant="outlined"
-                                                className={classes.textField}
-                                                InputLabelProps={{
-                                                  shrink: true,
-                                                }}
-                                                value={dtNascimento}
-                                                onChange={handleChangeDtNascimento}
-                                                inputRef={register({required: true})}
-                                            />
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                            <TextField
-                                                variant="outlined"
-                                                required
-                                                fullWidth
-                                                id="email"
-                                                label="E-mail Address"
-                                                name="email"
-                                                autoComplete="email"
-                                                value={email}
-                                                onChange={handleChangeEmail}
-                                                inputRef={register({required: true})}
-                                            />
-                                            </Grid>
-
-                                            <Grid item xs={12} >
-
-                                            <TextField
-                                                autoComplete="cpf"
-                                                name="Cpf"
-                                                variant="outlined"
-                                                required
-                                                fullWidth
-                                                id="cpf"
-                                                label="CPF"
-                                                value={cpf}
-                                                onChange={handleChangeCpf}
-                                                inputRef={register({required: true})}
-                                            />
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                            <TextField
-                                                autoComplete="tel"
-                                                name="tel"
-                                                variant="outlined"
-                                                required
-                                                fullWidth
-                                                id="tel"
-                                                label="Tel"
-                                               value={telefone}
-                                               onChange={handleChangeTelefone}
-                                               inputRef={register({required: true})}
-
-                                            />
-                                        </Grid>
-                                        <Grid item xs={12} sm={6}>
-
-                                            <TextField
-                                                autoComplete="apartment"
-                                                name="apartment"
-                                                variant="outlined"
-                                                required
-                                                fullWidth
-                                                id="apartment"
-                                                label="Apartment"
-                                                type="number"
-                                                value={apartment}
-                                                onChange={handleChangeApartment}
-                                                inputRef={register({required: true})}
-                                            />
-                                            </Grid>
-                                            <Grid item xs={12} sm={6}>
-                                            <TextField
-                                                variant="outlined"
-                                                required
-                                                fullWidth
-                                                id="bloc"
-                                                label="Bloc"
-                                                name="bloc"
-                                                autoComplete="bloc"
-                                                type="number"
-                                                value={bloc}
-                                                onChange={handleChangeBloc}
-                                                inputRef={register({required: true})}
-                                            />
-                                            </Grid>
-                                    </Grid>
-                    <Button
-                        
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        type="submit"
-                        onClick={()=> handleClickFinish}
-                    >Register Resident
-                    </Button>   
-                    <Button
-                    onClick={()=> console.log(props.data)}>
-                        teste                        
-                    </Button>                 
-                </form>
-            </div>
-        </Container>
-    <Footer title="Apartment Management" description="Kiper v1.0" />
-</>
+  function onSubmit(formData) {
+    console.log(formData);
+    props.addResident(
+      formData.resident,
+      formData.bdate,
+      formData.tel,
+      formData.cpf,
+      formData.email,
+      formData.apartment,
+      formData.bloc,
     );
+    console.log("ativou!")
+  }
+
+  console.log(errors);
+    
+
+  const classes = useStyles();
+  return (
+    <>
+      <GlobalHeader title="Register Resident" buttonHome={true} />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar} />
+          <Typography component="h1" variant="h5">
+            Register Resident Form
+          </Typography>
+
+          <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  type="text"
+                  name="resident"
+                  label="Name"
+                  fullWidth
+                  variant="outlined"
+                  inputRef={register({
+                    required: true,
+                    minLength: 2,
+                  })}
+                ></TextField>
+                {errors.resident && errors.resident.type === "required" && (
+                  <p className={classes.error}>Invalid Name</p>
+                )}
+                {errors.resident && errors.resident.type === "minLength" && (
+                  <p className={classes.error}>
+                    This field required min lenght of 2
+                  </p>
+                )}
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  type="date"
+                  name="bdate"
+                  label="Birth Date"
+                  fullWidth
+                  variant="outlined"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputRef={register({
+                    required: true,                    
+                  })}
+                ></TextField>
+                {errors.bdate && errors.bdate.type === "required" && (
+                  <p className={classes.error}>Invalid Date</p>
+                )}             
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  type="text"
+                  name="email"
+                  label="E-mail Address"
+                  fullWidth
+                  variant="outlined"                 
+                  inputRef={register({
+                    required: true,                    
+                  })}
+                ></TextField>
+                {errors.email && errors.email.type === "required" && (
+                  <p className={classes.error}>Invalid E-mail</p>
+                )}             
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  type="text"
+                  name="cpf"
+                  label="CPF"
+                  fullWidth
+                  variant="outlined"                 
+                  inputRef={register({
+                    required: true,                    
+                  })}
+                ></TextField>
+                {errors.cpf && errors.cpf.type === "required" && (
+                  <p className={classes.error}>Invalid CPF</p>
+                )}     
+                        
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  type="text"
+                  name="tel"
+                  label="Tel"
+                  fullWidth
+                  variant="outlined"                 
+                  inputRef={register({
+                    required: true,                    
+                  })}
+                ></TextField>
+                {errors.tel && errors.tel.type === "required" && (
+                  <p className={classes.error}>Invalid Telephone</p>
+                )}                         
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  type="number"
+                  name="apartment"
+                  label="Apartment"                  
+                  variant="outlined"                 
+                  inputRef={register({
+                    required: true,                    
+                  })}
+                ></TextField>
+                {errors.apartment && errors.apartment.type === "required" && (
+                  <p className={classes.error}>Invalid Apartment Number</p>
+                )}   
+                </Grid> 
+                <Grid item xs={12} sm={6}>
+                 <TextField
+                  type="text"
+                  name="bloc"
+                  label="Bloc"                  
+                  variant="outlined"                 
+                  inputRef={register({
+                    required: true,                    
+                  })}
+                ></TextField>
+                {errors.bloc && errors.bloc.type === "required" && (
+                  <p className={classes.error}>Invalid Bloc Number</p>
+                )}                        
+              </Grid>
+            </Grid>
+
+            <Button
+              fullWidth
+              variant="contained"
+              color="inherit"
+              className={classes.submit}
+              type="submit"
+            >
+              Register Resident
+            </Button>
+           {/*  <Button onClick={() => console.log(props.data)}>teste</Button> */}
+          </form>
+        </div>
+      </Container>
+      <Footer title="Apartment Management" description="Kiper v1.0" />
+    </>
+  );
 };
 
 export default RegisterResident;

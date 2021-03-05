@@ -23,7 +23,7 @@ const ConsultResident = (props) => {
 
   const [resident, setResident] = useState("");
   const [open, setOpen] = React.useState(false);
-  const [canEdit, setCanEdit] = React.useState(false);
+  //const [canEdit, setCanEdit] = React.useState(false);
 
 
   
@@ -31,9 +31,9 @@ const ConsultResident = (props) => {
       setOpen(true)
   }
 
-  function handleCanEdit(){
+/*   function handleCanEdit(){
     setCanEdit(true)
-}
+} */
 
   function handleChangeResident(event) {
     let textDw = event.target.value;
@@ -44,7 +44,7 @@ const ConsultResident = (props) => {
  
   return (
     <>
-      <GlobalHeader title="Consult Resident Information" />
+      <GlobalHeader title="Consult Resident Information" buttonHome={true} />
       <Container component="main" maxWidth="xs">
         <CssBaseline>
           <p>Please, insert the name of the resident bellow</p>
@@ -127,8 +127,7 @@ const ConsultResident = (props) => {
                     </Grid>
                     <Button
                         variant="contained"
-                        color="primary"
-                        onClick={handleCanEdit}
+                        color="primary"                        
                         >Edit </Button>
                   </Grid>
                    : null } 

@@ -19,8 +19,26 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   table: {
-    minWidth: 650,
+    minWidth: 400,
+    borderCollapse: "collapse",
+    borderRadius: "5px 5px 0 0",
+    margin: "25px 0",
+    fontSize: "0.9em",
+    boxShadow: "0 0 20px rgba(0, 0, 0, 0.15)",
+    overflow: "hidden",    
   },
+  tableTheadTr: {
+    backgroundColor: "#009879",
+    color: "#ffffff",    
+    fontWeight: "bold",
+  },
+  tableTd: {
+    padding: "12px 15px",
+  },
+  tableTbodyTr: {
+  borderBottom: "1px solid #dddddd",
+  backgroundColor: "#f3f3f3",
+},
 }));
 
 const List = (props) => {
@@ -28,33 +46,33 @@ const List = (props) => {
 
   return (
     <>
-      <Container>
-        <CssBaseline>
+      <Container >
+        <CssBaseline >
           <AddInfoPage
             data={props.data}
             addItem={props.addItem}
             title="Add Info"
           />
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Id</TableCell>
-                <TableCell align="right">Resident</TableCell>
-                <TableCell align="right">Apartment</TableCell>
-                <TableCell align="right">Bloc</TableCell>
-                <TableCell align="right">Actions</TableCell>
+          <Table  aria-label="simple table" className={classes.table}>
+            <TableHead >
+              <TableRow >
+                <TableCell  className={classes.tableTheadTr} >Id</TableCell>
+                <TableCell  className={classes.tableTheadTr} align="right">Resident</TableCell>
+                <TableCell  className={classes.tableTheadTr} align="right">Apartment</TableCell>
+                <TableCell  className={classes.tableTheadTr} align="right">Bloc</TableCell>
+                <TableCell  className={classes.tableTheadTr} align="right">Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               	{props.data.map((row) => (
-                 <TableRow key={row.id}>
+                 <TableRow className={classes.tableTbodyTr} key={row.id}>
                   <TableCell component="th" scope="row">
                     {row.id}
                   </TableCell>
-                  <TableCell align="right">{row.resident}</TableCell>
-                  <TableCell align="right">{row.apartment}</TableCell>
-                  <TableCell align="right">{row.bloc}</TableCell>
-                  <TableCell align="right">
+                  <TableCell className={classes.tableTd} align="right">{row.resident}</TableCell>
+                  <TableCell className={classes.tableTd} align="right">{row.apartment}</TableCell>
+                  <TableCell className={classes.tableTd} align="right">{row.bloc}</TableCell>
+                  <TableCell className={classes.tableTd} align="right">
                     <PopupEdit
                       title="Edit"
                       row={row}

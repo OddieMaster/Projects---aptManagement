@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
-import { blue } from '@material-ui/core/colors';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Footer from "./pageComponents/Footer";
@@ -19,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
       margin: theme.spacing(1),
-      backgroundColor: blue[500],
+      backgroundColor: "#6CB26C",
   
     },
     form: {
@@ -27,34 +26,30 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(1),
     },
     enterButton: {
-      marginLeft: theme.spacing(10),
+      marginLeft: theme.spacing(11.50),
       marginTop: theme.spacing(2),
+      backgroundColor: "#6CB26C",
+      color: "#ffffff",
+      fontWeight: "bold",
     },
     registerButton: {
         marginLeft: theme.spacing(2),
         marginTop: theme.spacing(2),
+        backgroundColor: "#6CB26C",
+        color: "#ffffff",
+        fontWeight: "bold",
           
-    },
-    homeButton: {
-      background: 'linear-gradient(45deg, #2121d6 30%, #00d4ff 90%)',
-      border: 0,
-      borderRadius: 3,
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      color: 'white',
-      height: 40,
-      padding: '0 30px',
-      margin: theme.spacing(),
-      textTransform:'capitalize',
-
-    },
+    }, 
   }));
   
 const SignIn = () => {
 
     const classes = useStyles();
     return (
-         < >
-              <GlobalHeader  title="Sigin"/>
+         < div style={{
+          background: "#F3FFE7",  
+        }} >
+              <GlobalHeader buttonHome={true} />
 
                 <Container component="main" maxWidth="xs">
                     <CssBaseline>
@@ -90,14 +85,14 @@ const SignIn = () => {
                                             <Button
                                                 type="submit"
                                                 variant="contained"
-                                                color="primary"
+                                                color="inherit"
                                                 className={classes.enterButton}
                                             >Enter</Button>
 
                                             <Button
                                                 type="submit"
                                                 variant="contained"
-                                                color="primary"
+                                                color="inherit"
                                                 href="/register"
                                                 className={classes.registerButton}
                                             >Register</Button>
@@ -109,7 +104,7 @@ const SignIn = () => {
                     </CssBaseline>
                 </Container>
             <Footer title="Apartment Management" description="Kiper v1.0" />
-        </>
+        </ div>
     );
 };
 
