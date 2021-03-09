@@ -23,7 +23,7 @@ const PopupEdit = (props) => {
   };
 
   const [apartment, setAparment] = useState([]);
-  const [bloc, setBloc] = useState([]);
+  const [block, setBlock] = useState([]);
   const [resident, setResident] = useState([]);
 
   
@@ -32,9 +32,9 @@ const PopupEdit = (props) => {
       setAparment(textAp)
   }
 
-  function handleChangeBloc(event){
-      let textBloc = event.target.value;
-      setBloc(textBloc)
+  function handleChangeBlock(event){
+      let textBlock = event.target.value;
+      setBlock(textBlock)
   }
 
   function handleChangeResident(event){
@@ -45,7 +45,7 @@ const PopupEdit = (props) => {
   //console.log(props.row.id)
 
   function handleCloseFunction(id){
-    props.editItem(id, apartment, bloc, resident)
+    props.editItem(id, apartment, block, resident)
     setOpen(false)
     
   }
@@ -74,12 +74,12 @@ const PopupEdit = (props) => {
           />
           <TextField
             margin="dense"
-            id="bloc"
-            label="Bloc"
+            id="block"
+            label="Block"
             type="number"
             fullWidth
-            value={bloc}
-            onChange={handleChangeBloc}
+            value={block}
+            onChange={handleChangeBlock}
           />
           <TextField
             margin="dense"

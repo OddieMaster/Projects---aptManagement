@@ -10,6 +10,11 @@ import Container from "@material-ui/core/Container";
 import Footer from "./pageComponents/Footer";
 import GlobalHeader from "./pageComponents/GlobalHeader";
 import { useForm } from "react-hook-form";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { green } from '@material-ui/core/colors';
+import { withStyles } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,11 +39,28 @@ const useStyles = makeStyles((theme) => ({
   },
   error: {
     color: "red",
-  },
+  }, 
+  checkBox: {
+    color: "green",
+  }
 }));
 
-const RegisterResident = (props) => {
+const GreenCheckbox = withStyles({
+  root: {
+    color: green[400],
+    '&$checked': {
+      color: green[600],
+    },
+  },
+  checked: {},
+}) ((props) => <Checkbox color="default" {...props} />);
+
+function RegisterResident(props) {
   const { handleSubmit, register, errors } = useForm({});
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   function onSubmit(formData) {
     console.log(formData);
@@ -49,13 +71,13 @@ const RegisterResident = (props) => {
       formData.cpf,
       formData.email,
       formData.apartment,
-      formData.bloc,
+      formData.block
     );
-    console.log("ativou!")
+    console.log("ativou!");
   }
+  const [checked, setChecked] = React.useState(false);
 
   console.log(errors);
-    
 
   const classes = useStyles();
   return (
@@ -104,12 +126,12 @@ const RegisterResident = (props) => {
                     shrink: true,
                   }}
                   inputRef={register({
-                    required: true,                    
+                    required: true,
                   })}
                 ></TextField>
                 {errors.bdate && errors.bdate.type === "required" && (
                   <p className={classes.error}>Invalid Date</p>
-                )}             
+                )}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -117,14 +139,14 @@ const RegisterResident = (props) => {
                   name="email"
                   label="E-mail Address"
                   fullWidth
-                  variant="outlined"                 
+                  variant="outlined"
                   inputRef={register({
-                    required: true,                    
+                    required: true,
                   })}
                 ></TextField>
                 {errors.email && errors.email.type === "required" && (
                   <p className={classes.error}>Invalid E-mail</p>
-                )}             
+                )}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -132,15 +154,14 @@ const RegisterResident = (props) => {
                   name="cpf"
                   label="CPF"
                   fullWidth
-                  variant="outlined"                 
+                  variant="outlined"
                   inputRef={register({
-                    required: true,                    
+                    required: true,
                   })}
                 ></TextField>
                 {errors.cpf && errors.cpf.type === "required" && (
                   <p className={classes.error}>Invalid CPF</p>
-                )}     
-                        
+                )}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -148,43 +169,60 @@ const RegisterResident = (props) => {
                   name="tel"
                   label="Tel"
                   fullWidth
-                  variant="outlined"                 
+                  variant="outlined"
                   inputRef={register({
-                    required: true,                    
+                    required: true,
                   })}
                 ></TextField>
                 {errors.tel && errors.tel.type === "required" && (
                   <p className={classes.error}>Invalid Telephone</p>
-                )}                         
+                )}
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  type="number"
-                  name="apartment"
-                  label="Apartment"                  
-                  variant="outlined"                 
-                  inputRef={register({
-                    required: true,                    
-                  })}
-                ></TextField>
-                {errors.apartment && errors.apartment.type === "required" && (
-                  <p className={classes.error}>Invalid Apartment Number</p>
-                )}   
-                </Grid> 
-                <Grid item xs={12} sm={6}>
-                 <TextField
-                  type="text"
-                  name="bloc"
-                  label="Bloc"                  
-                  variant="outlined"                 
-                  inputRef={register({
-                    required: true,                    
-                  })}
-                ></TextField>
-                {errors.bloc && errors.bloc.type === "required" && (
-                  <p className={classes.error}>Invalid Bloc Number</p>
-                )}                        
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<GreenCheckbox
+                    className={classes.checkBox}
+                    checked={checked}
+                    onChange={handleChange}
+                    name="checked"
+                    color="primary" />}
+                  label="Want to link apartment and block?" />
               </Grid>
+              {checked === true ? (
+                <>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      type="number"
+                      name="apartment"
+                      label="Apartment"
+                      variant="outlined"
+                      inputRef={register({
+                        required: true,
+                      })}
+                    ></TextField>
+                    {errors.apartment &&
+                      errors.apartment.type === "required" && (
+                        <p className={classes.error}>
+                          Invalid Apartment Number
+                        </p>
+                      )}
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      type="text"
+                      name="block"
+                      label="Block"
+                      variant="outlined"
+                      inputRef={register({
+                        required: true,
+                      })}
+                    ></TextField>
+                    {errors.block && errors.block.type === "required" && (
+                      <p className={classes.error}>Invalid Block Number</p>
+                    )}
+                  </Grid>
+                </>
+              ) : null}
             </Grid>
 
             <Button
@@ -194,15 +232,15 @@ const RegisterResident = (props) => {
               className={classes.submit}
               type="submit"
             >
-              Register Resident
+                     Register Resident
             </Button>
-           {/*  <Button onClick={() => console.log(props.data)}>teste</Button> */}
+            {/*  <Button onClick={() => console.log(props.data)}>teste</Button> */}
           </form>
         </div>
       </Container>
       <Footer title="Apartment Management" description="Kiper v1.0" />
     </>
   );
-};
+}
 
 export default RegisterResident;

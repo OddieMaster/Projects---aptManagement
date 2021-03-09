@@ -11,10 +11,10 @@ import ConsultResident from "./components/ConsultResident"
 function App() {
 
   const [data, setData] = useState([
-    { id: 0, apartment: "1", bloc: "1", resident: "Oddie", dtNascimento: "03/04/1995", tel: 994962286, cpf: "07789808630", email: "romualdo.gui@gmail.com"},
-     { id: 1, apartment: "2", bloc: "2", resident: "Craft" },
-    { id: 2, apartment: "3", bloc: "3", resident: "Aleatorio1" },
-    { id: 3, apartment: "4", bloc: "4", resident: "Aleatorio2" },
+    { id: 0, apartment: "1", block: "1", resident: "Oddie", dtNascimento: "03/04/1995", tel: 994962286, cpf: "07789808630", email: "romualdo.gui@gmail.com"},
+     { id: 1, apartment: "2", block: "2", resident: "Craft" },
+    { id: 2, apartment: "3", block: "3", resident: "Jéssica" },
+    { id: 3, apartment: "4", block: "4", resident: "Aleatorio2" },
    ]);
 
   console.log(data)
@@ -25,10 +25,10 @@ function App() {
     return product;
   }
 
-   function editItem (id, apartment, bloc, resident) {
+   function editItem (id, apartment, block, resident) {
     var tempProduct = [...data];
     const index = tempProduct.indexOf(getRecord(id));
-    tempProduct.splice(index, 1, {id, apartment, bloc, resident})
+    tempProduct.splice(index, 1, {id, apartment, block, resident})
     setData(tempProduct)
     console.log("Editou!");
   }  
@@ -39,14 +39,14 @@ function App() {
     console.log("Deletou!");
   }
 
-  function addItem(apartment, bloc, resident) {
+  function addItem(apartment, block, resident) {
     
     setData([
       ...data,
       {
         id: data.length + 1,
         apartment: apartment,
-        bloc: bloc,
+        block: block,
         resident: resident,
       },
       
@@ -54,7 +54,7 @@ function App() {
     console.log("Adicionou!");
   }
 
-  function addResident(resident, dtNascimento, tel, cpf, email, apartment, bloc){
+  function addResident(resident, dtNascimento, tel, cpf, email, apartment, block){
 
     setData([
       ...data,
@@ -66,7 +66,7 @@ function App() {
         cpf: cpf,
         email: email,
         apartment: apartment,
-        bloc: bloc,
+        block: block,
       }
     ])
   }

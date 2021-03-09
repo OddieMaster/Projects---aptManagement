@@ -29,50 +29,50 @@ const useStyles = makeStyles((theme) => ({
 
 const Consult = (props) => {
   const [resident, setResident] = useState("");
-  const [bloc, setBloc] = useState("");
+  const [block, setBlock] = useState("");
   const [apartment, setApartment] = useState("");
 
   function searchItem(rows) {
-    if (resident === "" && bloc === "" && apartment === "") {
+    if (resident === "" && block === "" && apartment === "") {
       console.log("entrou todos");
       return rows;
-    } else if (resident !== "" && bloc === "" && apartment === "") {
+    } else if (resident !== "" && block === "" && apartment === "") {
       console.log("entrou resident");
       return rows.filter(
         (row) => row.resident.toLowerCase().indexOf(resident.toLowerCase()) > -1
       );
-    } else if (bloc !== "" && resident === "" && apartment === "") {
-      console.log("entrou bloc");
-      return rows.filter((row) => row.bloc === bloc);
-    } else if (apartment !== "" && bloc === "" && resident === "") {
+    } else if (block !== "" && resident === "" && apartment === "") {
+      console.log("entrou block");
+      return rows.filter((row) => row.block === block);
+    } else if (apartment !== "" && block === "" && resident === "") {
       console.log("entrou apartment");
       return rows.filter((row) => row.apartment === apartment);
-    } else if (bloc !== "" && apartment !== "" && resident === "") {
-      console.log("entrou bloc e aparment");
+    } else if (block !== "" && apartment !== "" && resident === "") {
+      console.log("entrou block e aparment");
       return rows.filter(
-        (row) => row.apartment === apartment && row.bloc === bloc
+        (row) => row.apartment === apartment && row.block === block
       );
-    } else if (bloc !== "" && apartment === "" && resident !== "") {
-      console.log("entrou bloc e resident");
+    } else if (block !== "" && apartment === "" && resident !== "") {
+      console.log("entrou block e resident");
       return rows.filter(
         (row) =>
           row.resident.toLowerCase().indexOf(resident.toLowerCase()) > -1 &&
-          row.bloc === bloc
+          row.block === block
       );
-    } else if (bloc === "" && apartment !== "" && resident !== "") {
+    } else if (block === "" && apartment !== "" && resident !== "") {
       console.log("entrou apartment e resident");
       return rows.filter(
         (row) =>
           row.resident.toLowerCase().indexOf(resident.toLowerCase()) > -1 &&
           row.apartment === apartment
       );
-    } else if (bloc !== "" && apartment !== "" && resident !== "") {
-      console.log("entrou apartment, bloc e resident");
+    } else if (block !== "" && apartment !== "" && resident !== "") {
+      console.log("entrou apartment, block e resident");
       return rows.filter(
         (row) =>
           row.resident.toLowerCase().indexOf(resident.toLowerCase()) > -1 &&
           row.apartment === apartment &&
-          row.bloc === bloc
+          row.block === block
       );
     }
     return rows;
@@ -102,12 +102,12 @@ const Consult = (props) => {
             onChange={(e) => setApartment(e.target.value)}
           />
 
-          <p>Bloc</p>
+          <p>Block</p>
 
           <TextField
             className={classes.input}
-            value={bloc}
-            onChange={(e) => setBloc(e.target.value)}
+            value={block}
+            onChange={(e) => setBlock(e.target.value)}
           />
 
           <p>Resident</p>

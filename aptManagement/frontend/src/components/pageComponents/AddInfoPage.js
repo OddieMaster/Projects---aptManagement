@@ -32,7 +32,7 @@ const AddInfoPage = (props) => {
   };
 
   const [apartment, setAparment] = useState([]);
-  const [bloc, setBloc] = useState([]);
+  const [block, setBlock] = useState([]);
   const [resident, setResident] = useState([]);
 
   const classes = useStyles();
@@ -43,10 +43,10 @@ const AddInfoPage = (props) => {
     setAparment(textAp);
   }
 
-  function handleChangeBloc(event) {
-    let textBloc = event.target.value;
-    console.log({ textBloc });
-    setBloc(textBloc);
+  function handleChangeBlock(event) {
+    let textBlock = event.target.value;
+    console.log({ textBlock });
+    setBlock(textBlock);
   }
 
   function handleChangeResident(event) {
@@ -56,7 +56,7 @@ const AddInfoPage = (props) => {
   }
 
   function handleClickFinish() {
-    props.addItem(apartment, bloc, resident);
+    props.addItem(apartment, block, resident);
     console.log(apartment)
     setOpen(false);
   }
@@ -83,13 +83,13 @@ const AddInfoPage = (props) => {
             onChange={handleChangeApartment}
           />
 
-          <p>Bloc</p>
+          <p>Block</p>
 
           <Input
             className={classes.input}
-            id="bloc"
-            value={bloc}
-            onChange={handleChangeBloc}
+            id="block"
+            value={block}
+            onChange={handleChangeBlock}
           />
           <p> Resident</p>
           <Input
@@ -97,6 +97,7 @@ const AddInfoPage = (props) => {
             id="resident"
             value={resident}
             onChange={handleChangeResident}
+            
           />
         </DialogContent>
         <DialogActions>

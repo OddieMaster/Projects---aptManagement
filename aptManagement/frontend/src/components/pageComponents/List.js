@@ -51,7 +51,7 @@ const List = (props) => {
           <AddInfoPage
             data={props.data}
             addItem={props.addItem}
-            title="Add Info"
+            title="Link Apartment and Block to Resident"
           />
           <Table  aria-label="simple table" className={classes.table}>
             <TableHead >
@@ -59,7 +59,7 @@ const List = (props) => {
                 <TableCell  className={classes.tableTheadTr} >Id</TableCell>
                 <TableCell  className={classes.tableTheadTr} align="right">Resident</TableCell>
                 <TableCell  className={classes.tableTheadTr} align="right">Apartment</TableCell>
-                <TableCell  className={classes.tableTheadTr} align="right">Bloc</TableCell>
+                <TableCell  className={classes.tableTheadTr} align="right">Block</TableCell>
                 <TableCell  className={classes.tableTheadTr} align="right">Actions</TableCell>
               </TableRow>
             </TableHead>
@@ -71,7 +71,7 @@ const List = (props) => {
                   </TableCell>
                   <TableCell className={classes.tableTd} align="right">{row.resident}</TableCell>
                   <TableCell className={classes.tableTd} align="right">{row.apartment}</TableCell>
-                  <TableCell className={classes.tableTd} align="right">{row.bloc}</TableCell>
+                  <TableCell className={classes.tableTd} align="right">{row.block}</TableCell>
                   <TableCell className={classes.tableTd} align="right">
                     <PopupEdit
                       title="Edit"

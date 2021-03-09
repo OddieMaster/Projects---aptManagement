@@ -41,7 +41,7 @@ const PopupEdit = (props) => {
         <DialogContent>
           <DialogContentText>
             Deseja realmente deletas todas as informações? O morador ainda
-            permanecerá no banco de dados, porém o Apartamento e Bloco será
+            permanecerá no banco de dados, porém o Apartamento e Blocko será
             deletado!
           </DialogContentText>
         </DialogContent>

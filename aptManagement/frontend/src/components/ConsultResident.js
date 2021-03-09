@@ -119,7 +119,7 @@ const ConsultResident = (props) => {
                         readOnly: true,
                   }} ></TextField>
                   <TextField                                               
-                        label="Bloc"
+                        label="Block"
                         defaultValue="2"
                         InputProps={{
                         readOnly: true,
