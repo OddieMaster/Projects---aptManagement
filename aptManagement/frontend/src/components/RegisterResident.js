@@ -12,9 +12,8 @@ import GlobalHeader from "./pageComponents/GlobalHeader";
 import { useForm } from "react-hook-form";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { green } from '@material-ui/core/colors';
-import { withStyles } from '@material-ui/core/styles';
-
+import { green } from "@material-ui/core/colors";
+import { withStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,21 +38,21 @@ const useStyles = makeStyles((theme) => ({
   },
   error: {
     color: "red",
-  }, 
+  },
   checkBox: {
     color: "green",
-  }
+  },
 }));
 
 const GreenCheckbox = withStyles({
   root: {
     color: green[400],
-    '&$checked': {
+    "&$checked": {
       color: green[600],
     },
   },
   checked: {},
-}) ((props) => <Checkbox color="default" {...props} />);
+})((props) => <Checkbox color="default" {...props} />);
 
 function RegisterResident(props) {
   const { handleSubmit, register, errors } = useForm({});
@@ -180,13 +179,17 @@ function RegisterResident(props) {
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<GreenCheckbox
-                    className={classes.checkBox}
-                    checked={checked}
-                    onChange={handleChange}
-                    name="checked"
-                    color="primary" />}
-                  label="Want to link apartment and block?" />
+                  control={
+                    <GreenCheckbox
+                      className={classes.checkBox}
+                      checked={checked}
+                      onChange={handleChange}
+                      name="checked"
+                      color="primary"
+                    />
+                  }
+                  label="Want to link apartment and block?"
+                />
               </Grid>
               {checked === true ? (
                 <>
@@ -232,7 +235,7 @@ function RegisterResident(props) {
               className={classes.submit}
               type="submit"
             >
-                     Register Resident
+              Register Resident
             </Button>
             {/*  <Button onClick={() => console.log(props.data)}>teste</Button> */}
           </form>
