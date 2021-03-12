@@ -71,6 +71,8 @@ function App() {
     ])
   }
 
+
+  
   return (
     <>
       <Router>
@@ -81,6 +83,7 @@ function App() {
           <Route path="/consultResident"> 
             <ConsultResident 
               data={data} 
+              deleteItem={deleteItem}
               /> 
           </Route>
           

@@ -115,14 +115,17 @@ const AddInfoPage = (props) => {
                     id="selectResident"
                     name="resident"
                     defaultValue=""
+                    
                   >
                     {props.data.map((row) => (
                       <MenuItem value={row.resident || ""} key={row.id}>
                         {row.resident}
                       </MenuItem>
-                    ))}
+                    ))}                    
                   </Select>
+                  
                 }
+                
                 name="Select"
                 control={control}
                 rules={{

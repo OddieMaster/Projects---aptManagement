@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tableTd: {
     padding: "12px 15px",
+    flexDirection: "rowReverse",
   },
   tableTbodyTr: {
   borderBottom: "1px solid #dddddd",
@@ -53,7 +54,7 @@ const List = (props) => {
             addItem={props.addItem}
             title="Link Apartment and Block to Resident"
           />
-          <Table  aria-label="simple table" className={classes.table}>
+          <Table aria-label="simple table" className={classes.table}>
             <TableHead >
               <TableRow >
                 <TableCell  className={classes.tableTheadTr} >Id</TableCell>
@@ -72,18 +73,19 @@ const List = (props) => {
                   <TableCell className={classes.tableTd} align="right">{row.resident}</TableCell>
                   <TableCell className={classes.tableTd} align="right">{row.apartment}</TableCell>
                   <TableCell className={classes.tableTd} align="right">{row.block}</TableCell>
-                  <TableCell className={classes.tableTd} align="right">
-                    <PopupEdit
-                      title="Edit"
-                      row={row}
-                      editItem={props.editItem}
-                    ></PopupEdit>{" "}
-                    {"  "}
+                  <TableCell className={classes.tableTd} align="right">                                        
                     <PopupDelete
                       title="Delete"
                       id={row.id}
                       deleteItem={props.deleteItem}
-                    ></PopupDelete>
+                    ></PopupDelete> {"  "}
+                      <PopupEdit
+                      title="Edit"                                          
+                      row={row}                      
+                      editItem={props.editItem}
+                      fullTable="false"
+                    ></PopupEdit>
+                  
                   </TableCell>
                 </TableRow>
               ))}
