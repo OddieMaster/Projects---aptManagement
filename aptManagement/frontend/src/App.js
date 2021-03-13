@@ -32,6 +32,13 @@ function App() {
     setData(tempProduct)
     console.log("Editou!");
   }  
+  function editResident (id, resident, email, bdate, telephone, cpf, apartment, block) {
+    var tempProduct = [...data];
+    const index = tempProduct.indexOf(getRecord(id));
+    tempProduct.splice(index, 1, {id, resident, email, bdate, telephone, cpf, apartment, block})
+    setData(tempProduct)
+    console.log("Editou Resident!");
+  }  
 
  function deleteItem(id) {
     const tempData = data.filter((item) => item.id !== id);
@@ -84,6 +91,7 @@ function App() {
             <ConsultResident 
               data={data} 
               deleteItem={deleteItem}
+              editResident={editResident}
               /> 
           </Route>
           
@@ -99,7 +107,7 @@ function App() {
               data={data}
               addItem={addItem}
               deleteItem={deleteItem}
-              editItem={editItem}
+              editItem={editItem}              
             />
           </Route>
         </Switch>

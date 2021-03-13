@@ -14,8 +14,8 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import EditIcon from "@material-ui/icons/Edit";
 import PopupDelete from "./pageComponents/PopupDelete";
+import PopupEdit from "./pageComponents/PopupEdit";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -111,7 +111,7 @@ const ConsultResident = (props) => {
     }
   }
   var result = findItems(props.data, value);
-
+  console.log(props)
   return (
     <>
       <GlobalHeader title="Consult Resident Information" buttonHome={true} />
@@ -377,7 +377,7 @@ const ConsultResident = (props) => {
           <Container maxWidth="lg">
             <Table aria-label="simple table" className={classes.table}>
               <TableHead>
-                <TableRow>
+                <TableRow >
                   <TableCell className={classes.tableTheadTr}>Id</TableCell>
                   <TableCell className={classes.tableTheadTr} align="center">
                     Resident
@@ -433,14 +433,13 @@ const ConsultResident = (props) => {
                       {row.block}
                     </TableCell>
                     <TableCell className={classes.tableTd} align="center">
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        startIcon={<EditIcon />}
-                      >
-                        Edit
-                      </Button>{" "}
-                      {"  "}
+                    <PopupEdit
+                      title="Edit"                                          
+                      row={row}                      
+                      editItem={props.editItem}
+                      editResident={props.editResident}
+                      fullTable="true"
+                    ></PopupEdit> {"  "}
                       <PopupDelete
                       title="Delete"
                       id={row.id}

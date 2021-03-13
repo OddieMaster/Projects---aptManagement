@@ -88,7 +88,7 @@ const Consult = (props) => {
     >
       <GlobalHeader
         buttonLabel="Consult Resident Information"
-        title="Consult apartment Bellow"
+        title="Consult and link apartment and block bellow"
         buttonHome={true}
       />
       <br />
@@ -125,6 +125,7 @@ const Consult = (props) => {
         addItem={props.addItem}
         deleteItem={props.deleteItem}
         editItem={props.editItem}
+        editResident={props.editResident}
       />
       <Footer title="Apartment Management" description="Kiper v1.0" />
     </div>

@@ -24,38 +24,36 @@ const PopupEdit = (props) => {
 
   const handleClickOpen = () => {
     setOpen(true);
-    getID(props.row.id)
   };
-  var getRowId = 0;
 
   const handleClose = () => {
     setOpen(false);
-  };
-    function getID(id){
-      getRowId = id
-    }
+  }; 
 
-  const actions = [
-    <Button
-      type="submit"
-      form="formData"
-      color="primary"      
-      className={classes.button}
-      onClick={()=>getID(props.row.id)}
-    >
-      Confirm
-    </Button>,
-    <Button className={classes.button} onClick={handleClose} color="primary">
-      Cancel
-    </Button>,
-  ];
-
-  const {handleSubmit, register} = useForm({});
+  const { handleSubmit, register } = useForm({});
 
   function onSubmit(formData) {
     console.log(formData);
-    console.log(getRowId);
-    props.editItem(getRowId, formData.apartment, formData.block, formData.resident)    
+    console.log(props.row.id);
+    handleClose();
+    if (props.fullTable === "false") {
+    props.editItem(
+      props.row.id,
+      formData.apartment,
+      formData.block,
+      formData.resident
+    )} else {
+      props.editResident(
+        props.row.id,
+        formData.resident,
+        formData.email,
+        formData.bdate,
+        formData.telephone,
+        formData.cpf,
+        formData.apartment,
+        formData.block
+      )
+    }
   }
 
   return (
@@ -69,63 +67,195 @@ const PopupEdit = (props) => {
         {props.title}
       </Button>
       {props.fullTable === "false" ? (
-        
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="form-dialog-title"
-            maxWidth="xs"
-          >
-            <DialogTitle id="form-dialog-title">Edit</DialogTitle>
-            <DialogContent>
-              <form
-                action={actions}
-                method="POST"
-                id="formData"
-                onSubmit={handleSubmit(onSubmit)}
-              >
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="apartment"
-                  name="apartment"
-                  label="Apartment"
-                  type="number"
-                  fullWidth
-                  inputRef={register({
-                    required: true,
-                  })}
-                />
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="form-dialog-title"
+          maxWidth="xs"
+        >
+          <DialogTitle id="form-dialog-title">Edit</DialogTitle>
+          <DialogContent>
+            <form              
+              id="formData"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <TextField
+                autoFocus
+                margin="dense"
+                id="apartment"
+                name="apartment"
+                label="Apartment"
+                type="number"
+                fullWidth
+                inputRef={register({
+                  required: true,
+                })}
+              />
 
-                <TextField
-                  margin="dense"
-                  id="block"
-                  name="block"
-                  label="Block"
-                  type="number"
-                  fullWidth
-                  inputRef={register({
-                    required: true,
-                  })}
-                />
-                
-                <TextField
-                  margin="dense"
-                  id="resident"
-                  label="Resident"
-                  name="resident"
-                  type="text"
-                  fullWidth
-                  inputRef={register({
-                    required: true,
-                  })}
-                />
-                
-              </form>
-              {actions}
-            </DialogContent>
-          </Dialog>
-        
+              <TextField
+                margin="dense"
+                id="block"
+                name="block"
+                label="Block"
+                type="number"
+                fullWidth
+                inputRef={register({
+                  required: true,
+                })}
+              />
+
+              <TextField
+                margin="dense"
+                id="resident"
+                label="Resident"
+                name="resident"
+                type="text"
+                value={props.row.resident}
+                InputProps={{
+                  readOnly: true,
+                }}
+                fullWidth
+                inputRef={register({
+                  required: true,
+                })}
+              />
+            </form>
+            <Button
+              type="submit"
+              form="formData"
+              color="primary"
+              className={classes.button}
+            >
+              Confirm
+            </Button>            
+            <Button
+              className={classes.button}
+              onClick={handleClose}
+              color="primary"
+            >
+              Cancel
+            </Button>            
+          </DialogContent>
+        </Dialog>
+      ) : null}
+
+{props.fullTable === "true" ? (
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="form-dialog-title"
+          maxWidth="xs"
+        >
+          <DialogTitle id="form-dialog-title">Edit Resident</DialogTitle>
+          <DialogContent>
+            <form              
+              id="formData"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <TextField
+                autoFocus
+                margin="dense"
+                id="resident"
+                label="Resident"
+                name="resident"
+                type="text"               
+                fullWidth                
+                inputRef={register({
+                  required: true,
+                })}
+              />
+               <TextField
+                margin="dense"
+                id="email"
+                label="E-mail"
+                name="email"
+                type="email"               
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputRef={register({
+                  required: true,
+                })}
+              />
+              <TextField
+                margin="dense"
+                id="bdate"
+                label="Birth Date"
+                name="bdate"
+                type="date"               
+                fullWidth                
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputRef={register({
+                  required: true,
+                })}
+              />
+             
+              <TextField
+                margin="dense"
+                id="telephone"
+                label="Telephone"
+                name="telephone"
+                type="text"               
+                fullWidth
+                inputRef={register({
+                  required: true,
+                })}
+              />
+              <TextField
+                margin="dense"
+                id="cpf"
+                label="CPF"
+                name="cpf"
+                type="text"               
+                fullWidth
+                inputRef={register({
+                  required: true,
+                })}
+              />
+              <TextField               
+                margin="dense"
+                id="apartment"
+                name="apartment"
+                label="Apartment"
+                type="number"
+                fullWidth
+                inputRef={register({
+                  required: true,
+                })}
+              />
+
+              <TextField
+                margin="dense"
+                id="block"
+                name="block"
+                label="Block"
+                type="number"
+                fullWidth
+                inputRef={register({
+                  required: true,
+                })}
+              />
+            </form>
+            <Button
+              type="submit"
+              form="formData"
+              color="primary"
+              className={classes.button}
+            >
+              Confirm
+            </Button>            
+            <Button
+              className={classes.button}
+              onClick={handleClose}
+              color="primary"
+            >
+              Cancel
+            </Button>            
+          </DialogContent>
+        </Dialog>
       ) : null}
     </>
   );

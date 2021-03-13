@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 const List = (props) => {
   const classes = useStyles();
-
+  
   return (
     <>
       <Container >
@@ -83,6 +83,7 @@ const List = (props) => {
                       title="Edit"                                          
                       row={row}                      
                       editItem={props.editItem}
+                      editResident={props.editResident}
                       fullTable="false"
                     ></PopupEdit>
                   
