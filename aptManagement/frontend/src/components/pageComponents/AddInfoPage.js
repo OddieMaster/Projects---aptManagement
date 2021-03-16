@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
     backgroundColor: "#22bb33",
     color: "white",
+    borderRadius: "15px",
+    boxShadow: "0 0 20px rgba(0, 0, 0, 0.15)",
+    fontWeight: "bold",
   },
   formControl: {
     minWidth: 120,
@@ -115,17 +118,14 @@ const AddInfoPage = (props) => {
                     id="selectResident"
                     name="resident"
                     defaultValue=""
-                    
                   >
                     {props.data.map((row) => (
                       <MenuItem value={row.resident || ""} key={row.id}>
                         {row.resident}
                       </MenuItem>
-                    ))}                    
+                    ))}
                   </Select>
-                  
                 }
-                
                 name="Select"
                 control={control}
                 rules={{

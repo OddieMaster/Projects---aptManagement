@@ -7,7 +7,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-
+import AssignmentIndSharpIcon from "@material-ui/icons/AssignmentIndSharp";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -27,9 +27,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#00ab87",
     color: "#EEFBFB",
     fontWeight: "bold",
-    textTransform: "capitalize",   
+    textTransform: "capitalize",
     borderRadius: "100px",
-   
   },
 
   container: {
@@ -44,90 +43,105 @@ const Header = (props) => {
   return (
     <>
       <React.Fragment>
-        <Toolbar className={classes.toolbar}>                  
-          
+        <Toolbar className={classes.toolbar}>
+          <Typography
+            component="h2"
+            variant="h5"
+            color="inherit"
+            align="center"
+            noWrap
+            className={classes.toolbarTitle}
+          >
+            {title}
+          </Typography>
 
-              <Typography
-                component="h2"
-                variant="h5"
-                color="inherit"
-                align="center"
-                noWrap
-                className={classes.toolbarTitle}
+          {props.buttonLabel ? (
+            <Button
+              variant="outlined"
+              size="small"
+              href="/consultResident"
+              className={classes.button}
+              startIcon={
+                <SearchIcon style={{ color: "#000000", fontSize: 25 }} />
+              }
+            >
+              {props.buttonLabel}
+            </Button>
+          ) : null}
+          {props.buttonGlobal ? (
+            <>
+              <Button
+                className={classes.button}
+                variant="outlined"
+                size="small"
+                href="register"
+                startIcon={
+                  <AssignmentIndSharpIcon
+                    fontSize="large"
+                    style={{ color: "#283747", fontSize: 25 }}
+                  />
+                }
               >
-                {title}
-              </Typography>
-
-              {props.buttonLabel ? (
-                <Button
-                  variant="outlined"
-                  size="small"
-                  href="/consultResident"
-                  className={classes.button}
-                  startIcon={
-                    <SearchIcon style={{ color:"#000000", fontSize: 25 }} />
-                  }
-                >
-                  {props.buttonLabel}
-                </Button>
-              ) : null}
-              {props.buttonGlobal ? (
-                <>
-                  <Button
-                    className={classes.button}
-                    variant="outlined"
-                    size="small"
-                    href="registerResident"
-                    startIcon={
-                      <AddCircleOutlineIcon
-                        fontSize="large"
-                        style={{ color:"#00ff5d", fontSize: 25 }}
-                      />
-                    }
-                  >
-                    Register Resident
-                  </Button>
-                  <Button
-                    className={classes.button}
-                    variant="outlined"
-                    size="small"
-                    href="consult"
-                    startIcon={
-                      <SearchIcon color="primary" style={{color:"#000000", fontSize: 25 }} />
-                    }
-                  >
-                    Consult
-                  </Button>
-                  <Button
-                    className={classes.button}
-                    variant="outlined"
-                    size="small"
-                    startIcon={
-                      <AccountCircleIcon
-                        fontSize="large"
-                        color="primary"
-                        style={{ color:" #EEFBFB", fontSize: 25 }}
-                      />
-                    }
-                    href="/"
-                  >
-                    Login
-                  </Button>
-                </>
-              ) : null}
-              {props.buttonHome ? (
-                <Button
-                  className={classes.button}
-                  variant="outlined"
-                  size="small"
-                  startIcon={
-                    <HomeIcon style={{ color:"#d4f0bb", fontSize: 25 }} />
-                  }
-                  href="/homePage"
-                >
-                  Home
-                </Button>
-              ) : null}
+                Register Operator
+              </Button>
+              <Button
+                className={classes.button}
+                variant="outlined"
+                size="small"
+                href="registerResident"
+                startIcon={
+                  <AddCircleOutlineIcon
+                    fontSize="large"
+                    style={{ color: "#00ff5d", fontSize: 25 }}
+                  />
+                }
+              >
+                Register Resident
+              </Button>
+              <Button
+                className={classes.button}
+                variant="outlined"
+                size="small"
+                href="consult"
+                startIcon={
+                  <SearchIcon
+                    color="primary"
+                    style={{ color: "#000000", fontSize: 25 }}
+                  />
+                }
+              >
+                Consult
+              </Button>
+              <Button
+                className={classes.button}
+                variant="outlined"
+                size="small"
+                startIcon={
+                  <AccountCircleIcon
+                    fontSize="large"
+                    color="primary"
+                    style={{ color: " #EEFBFB", fontSize: 25 }}
+                  />
+                }
+                href="/"
+              >
+                Login
+              </Button>
+            </>
+          ) : null}
+          {props.buttonHome ? (
+            <Button
+              className={classes.button}
+              variant="outlined"
+              size="small"
+              startIcon={
+                <HomeIcon style={{ color: "#d4f0bb", fontSize: 25 }} />
+              }
+              href="/homePage"
+            >
+              Home
+            </Button>
+          ) : null}
         </Toolbar>
       </React.Fragment>
     </>

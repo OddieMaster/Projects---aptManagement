@@ -5,7 +5,6 @@ import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import List from "./pageComponents/List";
 import { TextField } from "@material-ui/core";
-import Footer from "./pageComponents/Footer";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -127,7 +126,6 @@ const Consult = (props) => {
         editItem={props.editItem}
         editResident={props.editResident}
       />
-      <Footer title="Apartment Management" description="Kiper v1.0" />
     </div>
   );
 };

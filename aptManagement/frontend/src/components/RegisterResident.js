@@ -66,7 +66,7 @@ function RegisterResident(props) {
     props.addResident(
       formData.resident,
       formData.bdate,
-      formData.tel,
+      formData.telephone,
       formData.cpf,
       formData.email,
       formData.apartment,
@@ -165,7 +165,7 @@ function RegisterResident(props) {
               <Grid item xs={12}>
                 <TextField
                   type="text"
-                  name="tel"
+                  name="telephone"
                   label="Tel"
                   fullWidth
                   variant="outlined"
@@ -173,7 +173,7 @@ function RegisterResident(props) {
                     required: true,
                   })}
                 ></TextField>
-                {errors.tel && errors.tel.type === "required" && (
+                {errors.telephone && errors.telephone.type === "required" && (
                   <p className={classes.error}>Invalid Telephone</p>
                 )}
               </Grid>

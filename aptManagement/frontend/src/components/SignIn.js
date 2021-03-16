@@ -25,15 +25,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     marginTop: theme.spacing(1),
   },
-  enterButton: {
-    marginLeft: theme.spacing(11.5),
-    marginTop: theme.spacing(2),
-    backgroundColor: "#6CB26C",
-    color: "#ffffff",
-    fontWeight: "bold",
-  },
-  registerButton: {
-    marginLeft: theme.spacing(2),
+  enterButton: {    
     marginTop: theme.spacing(2),
     backgroundColor: "#6CB26C",
     color: "#ffffff",
@@ -108,19 +100,10 @@ const SignIn = () => {
                 type="submit"
                 variant="contained"
                 color="inherit"
+                fullWidth
                 className={classes.enterButton}
               >
                 Enter
-              </Button>
-
-              <Button
-                type="submit"
-                variant="contained"
-                color="inherit"
-                href="/register"
-                className={classes.registerButton}
-              >
-                Register
               </Button>
             </form>
           </div>

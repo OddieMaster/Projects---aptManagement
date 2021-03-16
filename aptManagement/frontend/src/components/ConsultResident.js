@@ -16,6 +16,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import PopupDelete from "./pageComponents/PopupDelete";
 import PopupEdit from "./pageComponents/PopupEdit";
+import TablePagination from "@material-ui/core/TablePagination";
+
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -69,11 +71,24 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#ffffff",
     color: "#009879",
     fontWeight: "bold",
+    maxHeight: 400,
   },
 }));
 
 const ConsultResident = (props) => {
   const classes = useStyles();
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(4);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   const [open, setOpen] = React.useState(false);
   const { handleSubmit, register, errors } = useForm({});
@@ -91,27 +106,51 @@ const ConsultResident = (props) => {
   function onSubmit(formData) {
     setInputValue(formData);
     handleClick();
+    console.log(formData);
   }
 
   function findItems(rows, value) {
     switch (value !== 0) {
       case value === 1 && inputValue !== "":
-        console.log(rows);
-        console.log(inputValue);
-        let teste = rows.filter((row) => row.resident === "Craft");
-        /*   let tempData = rows.filter((row) => row.resident.toLowerCase().indexOf(inputValue.toString().toLowerCase()) > -1) */
-        console.log("ativou findItems");
-        console.log(teste);
-        /*   console.log(tempData); */
-        return teste;
+        let tempRowName = rows.filter(
+          (row) => row.resident.toLowerCase() === inputValue.name.toLowerCase()
+        );
+        return tempRowName;
+
+      case value === 2 && inputValue !== "":
+        let tempRowCPF = rows.filter((row) => row.cpf === inputValue.cpf);
+        return tempRowCPF;
+
+      case value === 3 && inputValue !== "":
+        let tempRowEmail = rows.filter((row) => row.email === inputValue.email);
+        return tempRowEmail;
+
+      case value === 4 && inputValue !== "":
+        let tempRowBdate = rows.filter((row) => row.bdate === inputValue.bdate);
+        return tempRowBdate;
+
+      case value === 5 && inputValue !== "":
+        let tempRowTelephone = rows.filter(
+          (row) => row.telephone === inputValue.telephone
+        );
+        return tempRowTelephone;
+
+      case value === 6 && inputValue !== "":
+        let tempRowApartment = rows.filter(
+          (row) => row.apartment === inputValue.apartment
+        );
+        return tempRowApartment;
+
+      case value === 7 && inputValue !== "":
+        let tempRowBlock = rows.filter((row) => row.block === inputValue.block);
+        return tempRowBlock;
 
       default:
-        console.log("entrou default");
-        return rows;
+        return null;
     }
   }
   var result = findItems(props.data, value);
-  console.log(props)
+
   return (
     <>
       <GlobalHeader title="Consult Resident Information" buttonHome={true} />
@@ -374,89 +413,97 @@ const ConsultResident = (props) => {
       </Container>
       {open ? (
         <>
-          <Container maxWidth="lg">
-            <Table aria-label="simple table" className={classes.table}>
-              <TableHead>
-                <TableRow >
-                  <TableCell className={classes.tableTheadTr}>Id</TableCell>
-                  <TableCell className={classes.tableTheadTr} align="center">
-                    Resident
-                  </TableCell>
-                  <TableCell className={classes.tableTheadTr} align="center">
-                    E-mail
-                  </TableCell>
-                  <TableCell className={classes.tableTheadTr} align="center">
-                    Birth Date
-                  </TableCell>
-                  <TableCell className={classes.tableTheadTr} align="center">
-                    Telephone
-                  </TableCell>
-                  <TableCell className={classes.tableTheadTr} align="center">
-                    CPF
-                  </TableCell>
-                  <TableCell className={classes.tableTheadTr} align="center">
-                    Apartment
-                  </TableCell>
-                  <TableCell className={classes.tableTheadTr} align="center">
-                    Block
-                  </TableCell>
-                  <TableCell className={classes.tableTheadTr} align="center">
-                    Actions
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {result.map((row) => (
-                  <TableRow className={classes.tableTbodyTr} key={row.id}>
-                    <TableCell component="th" scope="row">
-                      {row.id}
+          <Container maxWidth="lg">            
+              <Table aria-label="simple table" className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell className={classes.tableTheadTr}>Id</TableCell>
+                    <TableCell className={classes.tableTheadTr} align="center">
+                      Resident
                     </TableCell>
-                    <TableCell className={classes.tableTd} align="center">
-                      {row.resident}
+                    <TableCell className={classes.tableTheadTr} align="center">
+                      E-mail
                     </TableCell>
-                    <TableCell className={classes.tableTd} align="center">
-                      {row.email}
+                    <TableCell className={classes.tableTheadTr} align="center">
+                      Birth Date
                     </TableCell>
-                    <TableCell className={classes.tableTd} align="center">
-                      {row.dtNascimento}
+                    <TableCell className={classes.tableTheadTr} align="center">
+                      Telephone
                     </TableCell>
-                    <TableCell className={classes.tableTd} align="center">
-                      {row.tel}
+                    <TableCell className={classes.tableTheadTr} align="center">
+                      CPF
                     </TableCell>
-                    <TableCell className={classes.tableTd} align="center">
-                      {row.cpf}
+                    <TableCell className={classes.tableTheadTr} align="center">
+                      Apartment
                     </TableCell>
-                    <TableCell className={classes.tableTd} align="center">
-                      {row.apartment}
+                    <TableCell className={classes.tableTheadTr} align="center">
+                      Block
                     </TableCell>
-                    <TableCell className={classes.tableTd} align="center">
-                      {row.block}
-                    </TableCell>
-                    <TableCell className={classes.tableTd} align="center">
-                    <PopupEdit
-                      title="Edit"                                          
-                      row={row}                      
-                      editItem={props.editItem}
-                      editResident={props.editResident}
-                      fullTable="true"
-                    ></PopupEdit> {"  "}
-                      <PopupDelete
-                      title="Delete"
-                      id={row.id}
-                      deleteItem={props.deleteItem}
-                    ></PopupDelete>
+                    <TableCell className={classes.tableTheadTr} align="center">
+                      Actions
                     </TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHead>
+                <TableBody>
+                  {result
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => (
+                      <TableRow className={classes.tableTbodyTr} key={row.id}>
+                        <TableCell component="th" scope="row">
+                          {row.id}
+                        </TableCell>
+                        <TableCell className={classes.tableTd} align="center">
+                          {row.resident}
+                        </TableCell>
+                        <TableCell className={classes.tableTd} align="center">
+                          {row.email}
+                        </TableCell>
+                        <TableCell className={classes.tableTd} align="center">
+                          {row.bdate}
+                        </TableCell>
+                        <TableCell className={classes.tableTd} align="center">
+                          {row.telephone}
+                        </TableCell>
+                        <TableCell className={classes.tableTd} align="center">
+                          {row.cpf}
+                        </TableCell>
+                        <TableCell className={classes.tableTd} align="center">
+                          {row.apartment}
+                        </TableCell>
+                        <TableCell className={classes.tableTd} align="center">
+                          {row.block}
+                        </TableCell>
+                        <TableCell className={classes.tableTd} align="center">
+                          <PopupEdit
+                            title="Edit"
+                            row={row}
+                            editItem={props.editItem}
+                            editResident={props.editResident}
+                            fullTable="true"
+                          ></PopupEdit>{" "}
+                          {"  "}
+                          <PopupDelete
+                            title="Delete"
+                            id={row.id}
+                            deleteItem={props.deleteItem}
+                          ></PopupDelete>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                </TableBody>
+              </Table>
+              <TablePagination
+                rowsPerPageOptions={[4, 8, 15]}
+                component="div"
+                count={result.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleChangeRowsPerPage}
+              />           
           </Container>
         </>
       ) : null}
-      <Button onClick={() => console.log(inputValue)}>
-        searchParameter(?)
-      </Button>
-      <Button onClick={() => console.log(value)}>value(?)</Button>
     </>
   );
 };

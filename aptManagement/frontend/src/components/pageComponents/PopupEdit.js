@@ -28,7 +28,7 @@ const PopupEdit = (props) => {
 
   const handleClose = () => {
     setOpen(false);
-  }; 
+  };
 
   const { handleSubmit, register } = useForm({});
 
@@ -37,12 +37,13 @@ const PopupEdit = (props) => {
     console.log(props.row.id);
     handleClose();
     if (props.fullTable === "false") {
-    props.editItem(
-      props.row.id,
-      formData.apartment,
-      formData.block,
-      formData.resident
-    )} else {
+      props.editItem(
+        props.row.id,
+        formData.apartment,
+        formData.block,
+        formData.resident
+      );
+    } else {
       props.editResident(
         props.row.id,
         formData.resident,
@@ -52,7 +53,7 @@ const PopupEdit = (props) => {
         formData.cpf,
         formData.apartment,
         formData.block
-      )
+      );
     }
   }
 
@@ -75,10 +76,7 @@ const PopupEdit = (props) => {
         >
           <DialogTitle id="form-dialog-title">Edit</DialogTitle>
           <DialogContent>
-            <form              
-              id="formData"
-              onSubmit={handleSubmit(onSubmit)}
-            >
+            <form id="formData" onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 autoFocus
                 margin="dense"
@@ -127,19 +125,19 @@ const PopupEdit = (props) => {
               className={classes.button}
             >
               Confirm
-            </Button>            
+            </Button>
             <Button
               className={classes.button}
               onClick={handleClose}
               color="primary"
             >
               Cancel
-            </Button>            
+            </Button>
           </DialogContent>
         </Dialog>
       ) : null}
 
-{props.fullTable === "true" ? (
+      {props.fullTable === "true" ? (
         <Dialog
           open={open}
           onClose={handleClose}
@@ -148,28 +146,25 @@ const PopupEdit = (props) => {
         >
           <DialogTitle id="form-dialog-title">Edit Resident</DialogTitle>
           <DialogContent>
-            <form              
-              id="formData"
-              onSubmit={handleSubmit(onSubmit)}
-            >
+            <form id="formData" onSubmit={handleSubmit(onSubmit)}>
               <TextField
                 autoFocus
                 margin="dense"
                 id="resident"
                 label="Resident"
                 name="resident"
-                type="text"               
-                fullWidth                
+                type="text"
+                fullWidth
                 inputRef={register({
                   required: true,
                 })}
               />
-               <TextField
+              <TextField
                 margin="dense"
                 id="email"
                 label="E-mail"
                 name="email"
-                type="email"               
+                type="email"
                 fullWidth
                 InputLabelProps={{
                   shrink: true,
@@ -183,8 +178,8 @@ const PopupEdit = (props) => {
                 id="bdate"
                 label="Birth Date"
                 name="bdate"
-                type="date"               
-                fullWidth                
+                type="date"
+                fullWidth
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -192,13 +187,13 @@ const PopupEdit = (props) => {
                   required: true,
                 })}
               />
-             
+
               <TextField
                 margin="dense"
                 id="telephone"
                 label="Telephone"
                 name="telephone"
-                type="text"               
+                type="text"
                 fullWidth
                 inputRef={register({
                   required: true,
@@ -209,13 +204,13 @@ const PopupEdit = (props) => {
                 id="cpf"
                 label="CPF"
                 name="cpf"
-                type="text"               
+                type="text"
                 fullWidth
                 inputRef={register({
                   required: true,
                 })}
               />
-              <TextField               
+              <TextField
                 margin="dense"
                 id="apartment"
                 name="apartment"
@@ -246,14 +241,14 @@ const PopupEdit = (props) => {
               className={classes.button}
             >
               Confirm
-            </Button>            
+            </Button>
             <Button
               className={classes.button}
               onClick={handleClose}
               color="primary"
             >
               Cancel
-            </Button>            
+            </Button>
           </DialogContent>
         </Dialog>
       ) : null}

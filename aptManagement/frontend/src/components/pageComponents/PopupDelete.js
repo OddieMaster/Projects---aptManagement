@@ -7,7 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 
 const PopupEdit = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -25,8 +25,12 @@ const PopupEdit = (props) => {
 
   return (
     <>
-      
-      <Button variant="contained" color="secondary" startIcon={<DeleteOutlinedIcon />} onClick={handleOpen}>
+      <Button
+        variant="contained"
+        color="secondary"
+        startIcon={<DeleteOutlinedIcon />}
+        onClick={handleOpen}
+      >
         {props.title}
       </Button>
       <Dialog
@@ -40,14 +44,18 @@ const PopupEdit = (props) => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Deseja realmente deletas todas as informações? 
+            Deseja realmente deletas todas as informações?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => props.deleteItem(props.id)} color="primary" autoFocus>
+          <Button
+            onClick={() => props.deleteItem(props.id)}
+            color="primary"
+            autoFocus
+          >
             Delete
           </Button>
         </DialogActions>
