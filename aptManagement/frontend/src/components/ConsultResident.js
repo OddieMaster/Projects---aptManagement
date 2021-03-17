@@ -113,36 +113,37 @@ const ConsultResident = (props) => {
     switch (value !== 0) {
       case value === 1 && inputValue !== "":
         let tempRowName = rows.filter(
-          (row) => row.resident.toLowerCase() === inputValue.name.toLowerCase()
-        );
+          (row) => row.resident.toLowerCase().indexOf(inputValue.name.toLowerCase()) > -1);        
         return tempRowName;
 
       case value === 2 && inputValue !== "":
-        let tempRowCPF = rows.filter((row) => row.cpf === inputValue.cpf);
+        let tempRowCPF = rows.filter(
+          (row) => row.cpf === inputValue.cpf);
         return tempRowCPF;
 
       case value === 3 && inputValue !== "":
-        let tempRowEmail = rows.filter((row) => row.email === inputValue.email);
+        let tempRowEmail = rows.filter(
+          (row) => row.email === inputValue.email);
         return tempRowEmail;
 
       case value === 4 && inputValue !== "":
-        let tempRowBdate = rows.filter((row) => row.bdate === inputValue.bdate);
+        let tempRowBdate = rows.filter(
+          (row) => row.bdate === inputValue.bdate);
         return tempRowBdate;
 
       case value === 5 && inputValue !== "":
         let tempRowTelephone = rows.filter(
-          (row) => row.telephone === inputValue.telephone
-        );
+          (row) => row.telephone === inputValue.telephone);
         return tempRowTelephone;
 
       case value === 6 && inputValue !== "":
         let tempRowApartment = rows.filter(
-          (row) => row.apartment === inputValue.apartment
-        );
+          (row) => row.apartment === inputValue.apartment);
         return tempRowApartment;
 
       case value === 7 && inputValue !== "":
-        let tempRowBlock = rows.filter((row) => row.block === inputValue.block);
+        let tempRowBlock = rows.filter(
+          (row) => row.block === inputValue.block);
         return tempRowBlock;
 
       default:
@@ -220,7 +221,7 @@ const ConsultResident = (props) => {
                   variant="outlined"
                   fullWidth
                   id="cpf"
-                  label="Please, insert a CPF here"
+                  label="Please, insert a CPF here without dots or trace"
                   autoFocus
                   inputRef={register({
                     required: true,

@@ -11,6 +11,7 @@ import Container from "@material-ui/core/Container";
 import Footer from "./pageComponents/Footer";
 import GlobalHeader from "./pageComponents/GlobalHeader";
 import { useForm } from "react-hook-form";
+import PopUpConfirmation from "./pageComponents/PopUpConfirmation";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,6 +45,7 @@ const Register = () => {
 
   function onSubmit(formData) {
     console.log(formData);
+    <PopUpConfirmation />
   }
 
   return (
