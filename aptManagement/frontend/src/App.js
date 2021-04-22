@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SignIn from "./components/SignIn";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "./components/Register";
@@ -6,31 +6,23 @@ import HomePage from "./components/HomePage";
 import Consult from "./components/Consult";
 import RegisterResident from "./components/RegisterResident";
 import ConsultResident from "./components/ConsultResident";
+import axios from "axios";
 
 function App() {
-  const [data, setData] = useState([
-    {
-      id: 0,
-      apartment: "3",
-      block: "1",
-      resident: "Oddie",
-      bdate: "1995-04-03",
-      telephone: "994962286",
-      cpf: "07789808630",
-      email: "romualdo.gui@gmail.com",
-    },
-    { id: 1, apartment: "2", block: "2", resident: "Craft" },
-    { id: 2, apartment: "3", block: "3", resident: "Jéssica" },
-    { id: 3, apartment: "4", block: "4", resident: "Aleatorio2" },
-    { id: 4, apartment: "4", block: "4", resident: "Aleatorio3" },
-    { id: 5, apartment: "4", block: "4", resident: "Aleatorio4" },
-    { id: 6, apartment: "4", block: "4", resident: "Aleatorio5" },
-    { id: 7, apartment: "4", block: "4", resident: "Aleatorio6" },
-    { id: 8, apartment: "4", block: "4", resident: "Aleatorio7" },
-
-  ]);
+  const [data, setData] = useState([]);
 
   console.log(data);
+
+  useEffect(() => {
+    axios.get("http://localhost:8081/operators").then((response) => {
+      console.log(response);
+    });
+  }, []);
+  useEffect(() => {
+    axios.get("http://localhost:8081/residents").then((response) => {
+      setData(response.data);
+    });
+  }, []);
 
   function getRecord(id) {
     const product = data.find((item) => item.id === id);
