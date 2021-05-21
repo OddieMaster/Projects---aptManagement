@@ -11,7 +11,9 @@ import Container from "@material-ui/core/Container";
 import Footer from "./pageComponents/Footer";
 import GlobalHeader from "./pageComponents/GlobalHeader";
 import { useForm } from "react-hook-form";
-import PopUpConfirmation from "./pageComponents/PopUpConfirmation";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,15 +41,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 const Register = () => {
   const classes = useStyles();
   const { handleSubmit, register, errors } = useForm({});
-
+  let history = useHistory();
+  
   function onSubmit(formData) {
-    console.log(formData);
-    <PopUpConfirmation />
+    axios.post("http://localhost:8081/operators", formData).then((response) => {
+      console.log("IT WORKED");
+      window.alert("Operator registered successfully! Returning to the homepage")
+      history.push("/homePage");
+    }); 
   }
-
+  
   return (
     <>
       <GlobalHeader buttonHome={true} />
@@ -57,19 +65,19 @@ const Register = () => {
         <div className={classes.paper}>
           <Avatar className={classes.avatar} />
           <Typography component="h1" variant="h5">
-            Registration Form
+            Registration Form 
           </Typography>
 
           <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete="fname"
-                  name="firstName"
+                  name="name"
                   variant="outlined"
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="Name"
                   autoFocus
                   inputRef={register({
                     required: true,
@@ -77,23 +85,8 @@ const Register = () => {
                 />
                 {errors.firstName && errors.firstName.type === "required" && (
                   <p className={classes.error}>Invalid Name</p>
-                )}
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
-                  inputRef={register({
-                    required: true,
-                  })}
-                />
-                {errors.lastName && errors.lastName.type === "required" && (
-                  <p className={classes.error}>Invalid Name</p>
-                )}
+                )}     
+              
               </Grid>
               <Grid item xs={12}>
                 <TextField

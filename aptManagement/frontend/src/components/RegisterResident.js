@@ -14,6 +14,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { green } from "@material-ui/core/colors";
 import { withStyles } from "@material-ui/core/styles";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -56,6 +58,7 @@ const GreenCheckbox = withStyles({
 
 function RegisterResident(props) {
   const { handleSubmit, register, errors } = useForm({});
+  let history = useHistory();
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
@@ -63,16 +66,22 @@ function RegisterResident(props) {
 
   function onSubmit(formData) {
     console.log(formData);
-    props.addResident(
-      formData.resident,
-      formData.bdate,
-      formData.telephone,
-      formData.cpf,
-      formData.email,
-      formData.apartment,
-      formData.block
-    );
-    console.log("ativou!");
+    axios
+      .post("http://localhost:8081/residents", formData, {
+        headers: {
+          acessToken: sessionStorage.getItem("accessToken"),
+        },
+      })
+      .then((response) => {
+        if (response.data.error) {
+          console.log(response.data.error);
+        } else {
+          window.alert(
+            "Resident registered successfully! Returning to the homepage"
+          );
+          history.push("/homePage");
+        }
+      });
   }
   const [checked, setChecked] = React.useState(false);
 
@@ -91,7 +100,7 @@ function RegisterResident(props) {
             Register Resident Form
           </Typography>
 
-          <form className={classes.form} onSubmit={handleSubmit(onSubmit)} >
+          <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField

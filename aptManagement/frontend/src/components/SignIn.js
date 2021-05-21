@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -9,6 +9,8 @@ import TextField from "@material-ui/core/TextField";
 import Footer from "./pageComponents/Footer";
 import GlobalHeader from "./pageComponents/GlobalHeader";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+/* import { useHistory } from "react-router-dom"; */
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     marginTop: theme.spacing(1),
   },
-  enterButton: {    
+  enterButton: {
     marginTop: theme.spacing(2),
     backgroundColor: "#6CB26C",
     color: "#ffffff",
@@ -38,11 +40,22 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIn = () => {
   const classes = useStyles();
-  const { handleSubmit, register, errors } = useForm({});
+  const { register, errors } = useForm({});
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
 
-  function onSubmit(formData) {
-    console.log(formData);
-  }
+  const login = () => {
+    const data = { email: email, password: password };
+    axios
+      .post("http://localhost:8081/operators/login", data)
+      .then((response) => {
+        if (response.data.error) {
+          alert(response.data.error);
+        } else {
+          sessionStorage.setItem("accessToken", response.data);
+        }
+      });
+  };
 
   return (
     <div
@@ -59,11 +72,7 @@ const SignIn = () => {
             <Typography component="h1" variant="h5">
               Login
             </Typography>
-            <form
-              className={classes.form}
-              noValidate
-              onSubmit={handleSubmit(onSubmit)}
-            >
+            <form className={classes.form} noValidate>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -73,6 +82,9 @@ const SignIn = () => {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={(event) => {
+                  setemail(event.target.value);
+                }}
                 inputRef={register({
                   required: true,
                 })}
@@ -89,6 +101,9 @@ const SignIn = () => {
                 name="password"
                 type="password"
                 autoComplete="current-password"
+                onChange={(event) => {
+                  setpassword(event.target.value);
+                }}
                 inputRef={register({
                   required: true,
                 })}
@@ -97,11 +112,11 @@ const SignIn = () => {
                 <p className={classes.error}>Please insert a password</p>
               )}
               <Button
-                type="submit"
                 variant="contained"
                 color="inherit"
                 fullWidth
                 className={classes.enterButton}
+                onClick={login}
               >
                 Enter
               </Button>

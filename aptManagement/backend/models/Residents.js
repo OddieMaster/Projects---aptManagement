@@ -1,11 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
   const Residents = sequelize.define("Residents", {
-    name: {
+    resident: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     bdate: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     telephone: {
